@@ -17,14 +17,19 @@ function cssVar(name: `--${string}`, value: string | number): CSSProperties {
 
 function useInitialHashScroll() {
   useEffect(() => {
-    const id = window.location.hash.slice(1);
-    if (!id) return;
-    const target = document.getElementById(id);
-    if (!target) return;
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
 
+    const id = window.location.hash.slice(1);
+    const target = id ? document.getElementById(id) : null;
     const frame = window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        target.scrollIntoView({ behavior: "auto", block: "start" });
+        if (target) {
+          target.scrollIntoView({ behavior: "auto", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        }
       });
     });
     return () => window.cancelAnimationFrame(frame);
