@@ -39,6 +39,11 @@ function useInitialHashScroll() {
 function Hero() {
   return (
     <section className="hp-hero hp-hero-enhanced" id="top" aria-labelledby="hero-title" data-hero-motion="off">
+      <div className="hp-hero-media" aria-hidden="true">
+        <div className="hp-hero-devices">
+          <img src="/hero-devices.webp" alt="" width={1800} height={1639} />
+        </div>
+      </div>
       <div className="hp-hero-container">
         <div className="hp-hero-copy-panel">
           <h1 id="hero-title">
