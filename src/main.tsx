@@ -7,6 +7,7 @@ import "@fontsource/archivo/700.css";
 import "@fontsource/archivo/800.css";
 import "./styles.css";
 import { App } from "./App";
+import { LenisRoot } from "./LenisRoot";
 import { useVisualViewport } from "./useVisualViewport";
 
 function Root() {
@@ -22,6 +23,8 @@ function Root() {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Root />
+    <LenisRoot>
+      <Root />
+    </LenisRoot>
   </StrictMode>
 );
