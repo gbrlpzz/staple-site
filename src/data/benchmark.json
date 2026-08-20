@@ -1,0 +1,272 @@
+{
+  "version": "pilot-2026-08",
+  "date": "2026-08-19",
+  "kind": "preliminary_deterministic_replay",
+  "scenario": {
+    "bodyWeightKg": 76,
+    "energyKcal": 2400,
+    "proteinGPerKg": 1.8,
+    "fiberG": 38,
+    "weeks": 8,
+    "pricePulls": [
+      "2026-08-16",
+      "2026-08-17",
+      "2026-08-18",
+      "2026-08-19"
+    ],
+    "retailer": "Live local grocery prices",
+    "nutritionDb": "Swiss Food Composition Database V7.1",
+    "references": "DACH as coded in Staple"
+  },
+  "cost": {
+    "staplePerDay": 8.68,
+    "staplePerDayAfterFill": 7.7,
+    "staplePerWeek": 60.74,
+    "habePerDay": 13.65,
+    "habePerWeek": 95.55,
+    "deltaPercent": -36,
+    "label": "modeled food-at-home cost"
+  },
+  "adequacy": {
+    "stapleMar10": 99.7,
+    "menuChMar10": 74.2,
+    "label": "MAR-10 nutrient adequacy"
+  },
+  "waste": {
+    "stapleGPerWeek": 617,
+    "foenGPerWeek": 1731,
+    "deltaPercent": -64,
+    "label": "modeled edible waste",
+    "qualifier": "The FOEN comparator covers a broader household edible-discard basket than Staple’s planned shop."
+  },
+  "weeklyExpenditure": [
+    {
+      "week": 1,
+      "stapleChf": 108.6,
+      "habeChf": 95.55
+    },
+    {
+      "week": 2,
+      "stapleChf": 47.07,
+      "habeChf": 95.55
+    },
+    {
+      "week": 3,
+      "stapleChf": 61.25,
+      "habeChf": 95.55
+    },
+    {
+      "week": 4,
+      "stapleChf": 48.81,
+      "habeChf": 95.55
+    },
+    {
+      "week": 5,
+      "stapleChf": 76.75,
+      "habeChf": 95.55
+    },
+    {
+      "week": 6,
+      "stapleChf": 50.95,
+      "habeChf": 95.55
+    },
+    {
+      "week": 7,
+      "stapleChf": 51.31,
+      "habeChf": 95.55
+    },
+    {
+      "week": 8,
+      "stapleChf": 41.16,
+      "habeChf": 95.55
+    }
+  ],
+  "nutrients": [
+    {
+      "id": "proteinG",
+      "name": "Protein",
+      "staplePct": 204,
+      "menuChPct": 147
+    },
+    {
+      "id": "fiberG",
+      "name": "Fiber",
+      "staplePct": 130,
+      "menuChPct": 54
+    },
+    {
+      "id": "calciumMg",
+      "name": "Calcium",
+      "staplePct": 97,
+      "menuChPct": 93
+    },
+    {
+      "id": "magnesiumMg",
+      "name": "Magnesium",
+      "staplePct": 183,
+      "menuChPct": 97
+    },
+    {
+      "id": "ironMg",
+      "name": "Iron",
+      "staplePct": 159,
+      "menuChPct": 103
+    },
+    {
+      "id": "zincMg",
+      "name": "Zinc",
+      "staplePct": 140,
+      "menuChPct": 112
+    },
+    {
+      "id": "vitaminAMcg",
+      "name": "Vitamin A",
+      "staplePct": 259,
+      "menuChPct": null
+    },
+    {
+      "id": "vitaminCMg",
+      "name": "Vitamin C",
+      "staplePct": 180,
+      "menuChPct": 103
+    },
+    {
+      "id": "vitaminB12Mcg",
+      "name": "Vitamin B12",
+      "staplePct": 105,
+      "menuChPct": 105
+    },
+    {
+      "id": "folateMcg",
+      "name": "Folate",
+      "staplePct": 193,
+      "menuChPct": 82
+    }
+  ],
+  "choiceExample": {
+    "note": "Coverage is the in-app weekly micronutrient coverage score. It is not MAR-10.",
+    "unit": "CHF / week, mean of the eight-week replay for Budget; Quality is the replay quality policy.",
+    "plans": [
+      {
+        "label": "Budget",
+        "costChf": 89.51,
+        "coveragePercent": 110
+      },
+      {
+        "label": "Balanced",
+        "costChf": 93.28,
+        "coveragePercent": 115
+      },
+      {
+        "label": "Quality",
+        "costChf": 147.89,
+        "coveragePercent": 122
+      }
+    ],
+    "frontier": {
+      "date": "2026-08-19",
+      "sampledMenus": 509,
+      "strictlyFeasibleMenus": 232,
+      "note": "Full non-dominated set from the default live-engine run used for the product screenshots. Duplicate chart coordinates are collapsed. Highlighted points are the three plans surfaced in the app.",
+      "points": [
+        {
+          "costChf": 89.51,
+          "coveragePercent": 110,
+          "selectedLabel": "Budget"
+        },
+        {
+          "costChf": 90.67,
+          "coveragePercent": 110,
+          "selectedLabel": null
+        },
+        {
+          "costChf": 93.28,
+          "coveragePercent": 115,
+          "selectedLabel": "Balanced"
+        },
+        {
+          "costChf": 95.18,
+          "coveragePercent": 116,
+          "selectedLabel": null
+        },
+        {
+          "costChf": 94.62,
+          "coveragePercent": 117,
+          "selectedLabel": null
+        },
+        {
+          "costChf": 114.07,
+          "coveragePercent": 117,
+          "selectedLabel": null
+        },
+        {
+          "costChf": 112.81,
+          "coveragePercent": 117,
+          "selectedLabel": null
+        },
+        {
+          "costChf": 113.78,
+          "coveragePercent": 118,
+          "selectedLabel": null
+        },
+        {
+          "costChf": 148.97,
+          "coveragePercent": 119,
+          "selectedLabel": null
+        },
+        {
+          "costChf": 145.01,
+          "coveragePercent": 120,
+          "selectedLabel": null
+        },
+        {
+          "costChf": 147.89,
+          "coveragePercent": 122,
+          "selectedLabel": "Quality"
+        }
+      ]
+    }
+  },
+  "sources": {
+    "habe": "BFS Household Budget Survey (HABE), COICOP 01 food at home, single-adult grocery CHF 13.65/day.",
+    "menuCh": "FSVO/BLV menuCH 2014–15, n = 2,057 adults aged 18–75. MAR-10 Swiss mean 74.2%.",
+    "foen": "FOEN household edible discard, ~90 kg/person/year (~1,731 g/week). Broader than a planned grocery basket.",
+    "replay": "docs/verification/results/maintenance_8w/",
+    "system": "System documentation: Apple Health via Shortcut for energy and body weight; Swiss Food Composition Database V7.1 for nutrient values; current grocery prices and dated pantry events for the weekly plan.",
+    "optimizer": "Optimizer documentation: seeded whole-week search; live local grocery price and promotion overlay; whole-package till cost net of pantry; hard nutrition and cooking floors; Pareto Budget, Balanced and Quality plans; learned weights select a suggestion without changing the frontier.",
+    "protocol": "Frozen confirmatory protocol: primary outcomes, matched computational baselines, mechanism ablations, predefined scenarios, stress tests and holdout evaluation. The August 2026 replay remains pilot development data.",
+    "nutrients": "Ten MAR-10 components shown as raw percent of reference before the MAR-10 cap: protein, fiber, calcium, magnesium, iron, zinc, vitamins A, C and B12, and folate. Staple values are eight-week replay means. menuCH context is shown where the compiled survey mean is available; Vitamin A is not available in the frozen comparator."
+  },
+  "caveats": [
+    "The analysis is a preliminary deterministic engine replay for one fixed adult scenario; results are point estimates.",
+    "No sampling process was modeled, and confidence or uncertainty intervals are not reported.",
+    "Price inputs comprise four local grocery pulls collected from 16 to 19 August 2026; seasonal, geographic and retailer variation were not evaluated.",
+    "The eight weeks are sequential and share pantry state; they are not independent observations.",
+    "Household spending, dietary-survey and waste estimates are contextual comparators drawn from different populations and measurement frames; reported differences are not causal effects.",
+    "The household waste comparator covers a broader edible-discard basket than Staple’s modeled planned shop.",
+    "This was not a feeding or purchasing trial. Adherence, realized expenditure, realized waste and health outcomes were not measured.",
+    "This is a technical snapshot as of 19 August 2026. The algorithm, catalog, recipes, prices and outputs may change."
+  ],
+  "sourceLinks": {
+    "habe": {
+      "label": "Swiss household grocery spending — Federal Statistical Office Household Budget Survey (HBS/HABE)",
+      "url": "https://www.bfs.admin.ch/bfs/en/home/statistics/economic-social-situation-population/surveys/hbs.html"
+    },
+    "menuCh": {
+      "label": "Swiss adult nutrition — National Nutrition Survey menuCH",
+      "url": "https://www.studydata.blv.admin.ch/catalog/4"
+    },
+    "foen": {
+      "label": "Swiss household food waste — Federal Office for the Environment (FOEN)",
+      "url": "https://www.bafu.admin.ch/en/state-wastemanagement"
+    },
+    "swissFcd": {
+      "label": "Nutrient values — Swiss Food Composition Database V7.1",
+      "url": "https://naehrwertdaten.ch/en/"
+    }
+  },
+  "snapshot": {
+    "date": "19 August 2026",
+    "note": "Technical snapshot as of 19 August 2026. The Staple algorithm, recipe and product catalog, price inputs and plan outputs are under active development and may change after this date."
+  }
+}
