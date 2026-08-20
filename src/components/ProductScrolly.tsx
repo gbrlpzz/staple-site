@@ -141,7 +141,6 @@ export function ProductPhone({ active }: { active: number }) {
                 />
               ))}
             </div>
-            <div className="hp-home-indicator" aria-hidden="true" />
           </div>
         </div>
       </div>
