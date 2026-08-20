@@ -170,6 +170,7 @@ export function MobileMenu({
         role="dialog"
         aria-modal="true"
         aria-label="Sections"
+        data-lenis-prevent
         ref={panelRef}
       >
         <nav>
