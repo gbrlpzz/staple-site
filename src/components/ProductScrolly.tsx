@@ -87,7 +87,6 @@ export function ProductCopy({
         <span style={{ width: `${((active + 1) / PRODUCT_STEPS.length) * 100}%` }} />
       </div>
       <div className="hp-story hp-story-swap" aria-live="polite">
-        <span className="hp-story-kicker">{step.caption}</span>
         <h3>{step.title}</h3>
         <p>{step.body}</p>
       </div>
