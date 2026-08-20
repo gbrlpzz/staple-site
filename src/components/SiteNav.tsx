@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "./Icon";
 import { CONTACT_EMAIL } from "../data/benchmark";
 
 export const SECTION_LINKS = [
   { id: "product", label: "Product" },
-  { id: "research", label: "Research" },
+  { id: "research", label: "Algorithm" },
   { id: "results", label: "Results" },
 ] as const;
 
@@ -12,6 +12,34 @@ export const INQUIRE_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponen
 
 function sectionHref(id: string, basePath: string) {
   return `${basePath}#${id}`;
+}
+
+function useActiveNavIndicator(activeSection: string) {
+  const navRef = useRef<HTMLElement>(null);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const update = () => {
+      const active = nav.querySelector<HTMLElement>(".hp-nav-link.active");
+      if (!active) {
+        setIndicator({ left: 0, width: 0 });
+        return;
+      }
+      setIndicator({ left: active.offsetLeft, width: active.offsetWidth });
+    };
+    update();
+    const resizeObserver = typeof ResizeObserver === "function" ? new ResizeObserver(update) : null;
+    resizeObserver?.observe(nav);
+    window.addEventListener("resize", update);
+    return () => {
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [activeSection]);
+
+  return { navRef, indicator };
 }
 
 export function SiteNav({
@@ -25,13 +53,20 @@ export function SiteNav({
   onMenuToggle: () => void;
   basePath?: string;
 }) {
+  const { navRef, indicator } = useActiveNavIndicator(activeSection);
+
   return (
     <header className="hp-topbar">
       <div className="hp-topbar-inner">
         <a className="hp-brand" href={basePath || "#top"} aria-label="Staple home">
           <span className="collect-wordmark">staple</span>
         </a>
-        <nav className="hp-nav" aria-label="Sections">
+        <nav ref={navRef} className="hp-nav" aria-label="Sections">
+          <span
+            className="hp-nav-indicator"
+            aria-hidden="true"
+            style={{ width: `${indicator.width}px`, transform: `translateX(${indicator.left}px)` }}
+          />
           {SECTION_LINKS.map((link) => (
             <a
               key={link.id}

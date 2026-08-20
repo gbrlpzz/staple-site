@@ -36,9 +36,9 @@ describe("landing surface", () => {
   it("separates the optimizer from pilot results", () => {
     const { container } = render(<Landing />);
     expect(screen.getByRole("heading", { name: /one plan each week, recalculated around you and your market/i })).toBeInTheDocument();
-    expect(screen.getByText("Live local grocery prices")).toBeInTheDocument();
+    expect(screen.getByText("Local grocery prices")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /pareto frontier/i })).toBeInTheDocument();
-    expect(screen.getByText("How Staple chooses")).toBeInTheDocument();
+    expect(screen.getByText("Inputs")).toBeInTheDocument();
     expect(screen.getByText("Nutrition coverage (%)")).toBeInTheDocument();
     expect(screen.getByText("Weekly checkout cost (CHF)")).toBeInTheDocument();
     expect(benchmark.choiceExample.frontier.points).toHaveLength(11);
@@ -52,9 +52,10 @@ describe("landing surface", () => {
     expect(screen.getByRole("link", { name: /National Nutrition Survey menuCH/i })).toHaveAttribute("href", benchmark.sourceLinks.menuCh.url);
     const research = container.querySelector("#research");
     const results = container.querySelector("#results");
-    const inquire = container.querySelector("#inquire");
+    const faq = container.querySelector("#faq");
     expect(research && results && (research.compareDocumentPosition(results) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
-    expect(results && inquire && (results.compareDocumentPosition(inquire) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
+    expect(results && faq && (results.compareDocumentPosition(faq) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
+    expect(container.querySelector("#inquire")).toBeNull();
   });
 
   it("prints headline numbers from the research-data source", () => {

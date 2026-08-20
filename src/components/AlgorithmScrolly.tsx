@@ -51,7 +51,7 @@ export function AlgorithmCopy({
   return (
     <div className="hp-flow-copy">
       <div className="section-heading">
-        <p className="eyebrow">The optimizer</p>
+        <p className="eyebrow">Algorithm</p>
         <h2 id="algorithm-title">It searches. Then it keeps a week you can eat.</h2>
         <p>
           Not a language model. A weekly optimizer with hard floors, live prices

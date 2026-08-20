@@ -57,9 +57,9 @@ export function ProductCopy({
 }) {
   const step = PRODUCT_STEPS[active] ?? PRODUCT_STEPS[0];
   return (
-    <div className="hp-flow-copy">
+    <div className="hp-flow-copy" data-reveal-item="product-copy">
       <div className="section-heading">
-        <p className="eyebrow">A single workflow</p>
+        <p className="eyebrow">Product</p>
         <h2 id="product-title">Plan, shop, store and cook in one system.</h2>
         <p>Compare three complete weeks, choose the meals, shop from one list, track pantry stock and cook from the daily plan.</p>
       </div>
@@ -75,6 +75,16 @@ export function ProductCopy({
             {item.label}
           </button>
         ))}
+      </div>
+      <div
+        className="hp-product-progress"
+        role="progressbar"
+        aria-label={`Product step ${active + 1} of ${PRODUCT_STEPS.length}`}
+        aria-valuemin={1}
+        aria-valuemax={PRODUCT_STEPS.length}
+        aria-valuenow={active + 1}
+      >
+        <span style={{ width: `${((active + 1) / PRODUCT_STEPS.length) * 100}%` }} />
       </div>
       <div className="hp-story hp-story-swap" aria-live="polite">
         <span className="hp-story-kicker">{step.caption}</span>
@@ -113,7 +123,7 @@ function StatusBar() {
 
 export function ProductPhone({ active }: { active: number }) {
   return (
-    <div className="hp-flow-visual">
+    <div className="hp-flow-visual" data-reveal-item="product-phone">
       <div className="hp-iphone-wrap">
         <div className="hp-iphone">
           <div className="hp-iphone-screen">

@@ -179,18 +179,6 @@ img { max-width: 100%; display: block; }
 .arch-block li { padding: 3px 0; font-size: 0.875rem; color: var(--secondary); }
 .flow { color: var(--tertiary); font-size: 0.8125rem; margin: 4px 0; }
 
-.access-form, .form-success {
-  background: var(--paper);
-  border: 1px solid var(--separator-light);
-  border-radius: 18px;
-  padding: 18px;
-  max-width: 28rem;
-}
-.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-.field span { font-size: 0.75rem; color: var(--secondary); font-weight: 600; }
-.field-textarea { min-height: 110px; resize: vertical; }
-.form-error { color: var(--error); font-size: 0.8125rem; }
-
 .research-page { padding: 48px 24px 80px; max-width: 720px; margin: 0 auto; }
 .research-page h1 { letter-spacing: -0.04em; }
 .research-page table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.9375rem; }
@@ -198,8 +186,6 @@ img { max-width: 100%; display: block; }
 .disclaimer { font-size: 0.75rem; color: var(--tertiary); max-width: 40rem; margin-top: 24px; }
 
 .wordmark-dot { color: var(--tertiary); }
-
-.hp-shell { --hp-phone-scale: 0.74; }
 
 #product .hp-scrolly {
   height: calc(100vh + var(--hp-steps, 5) * 28vh);
@@ -477,14 +463,6 @@ img { max-width: 100%; display: block; }
 .hp-hero-enhanced .hp-hero-inner {
   max-width: 38rem;
 }
-.hp-hero-overline {
-  margin: 0 0 22px;
-  color: var(--secondary);
-  font-size: 0.75rem;
-  font-weight: 650;
-  letter-spacing: 0.055em;
-  text-transform: uppercase;
-}
 .hp-hero-enhanced h1 {
   display: flex;
   flex-direction: column;
@@ -492,16 +470,6 @@ img { max-width: 100%; display: block; }
   max-width: 10ch;
   font-size: clamp(3.2rem, 6vw, 5.5rem);
   line-height: 0.99;
-}
-.hp-hero-enhanced .hp-hero-thesis {
-  max-width: 28rem;
-  margin: 28px 0 0;
-  color: var(--text);
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
-  text-wrap: balance;
 }
 .hp-hero-enhanced .hp-hero-lede {
   max-width: 34rem;
@@ -532,15 +500,8 @@ img { max-width: 100%; display: block; }
   max-width: none;
 }
 .hp-hero-enhanced .hp-capture .button { flex: 0 0 auto; }
-.hp-hero-cta,
-.hp-inquire-cta { width: fit-content; min-width: 120px; }
+.hp-hero-cta { width: fit-content; min-width: 120px; }
 .hp-hero-cta { margin-top: 28px; }
-.hp-hero-note {
-  margin: 16px 0 0;
-  color: var(--tertiary);
-  font-size: 0.75rem;
-  line-height: 1.45;
-}
 
 .hp-hero-proof {
   width: 100%;
@@ -798,7 +759,6 @@ img { max-width: 100%; display: block; }
     font-size: clamp(2.8rem, 13vw, 4rem);
     line-height: 1.02;
   }
-  .hp-hero-enhanced .hp-hero-thesis { margin-top: 24px; }
   .hp-hero-enhanced .hp-capture {
     align-items: stretch;
     flex-direction: column;
@@ -881,12 +841,9 @@ img { max-width: 100%; display: block; }
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
 }
-.hp-hero-copy-panel .hp-hero-overline { margin-bottom: 20px; }
-.hp-hero-copy-panel .hp-hero-thesis { margin-top: 24px; }
 .hp-hero-copy-panel .hp-hero-lede { margin-top: 12px; }
 .hp-hero-copy-panel .hp-hero-cta { margin-top: 24px; }
-.hp-hero-copy-panel .hp-hero-note { margin-top: 14px; }
-
+.hp-hero-copy-panel 
 /* ---------- Method: static research protocol, not an animation ---------- */
 .hp-method-section {
   border-top: 1px solid var(--separator-light);
@@ -1078,8 +1035,6 @@ img { max-width: 100%; display: block; }
 
 
 /* ---------- Product phone chrome: match the Collect device treatment ---------- */
-.hp-iphone-wrap { height: calc(874px * var(--hp-phone-scale, 1)); }
-.hp-iphone { height: 874px; }
 .hp-phone-content {
   position: relative;
   z-index: 10;
@@ -1088,7 +1043,21 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   background: var(--canvas);
 }
-.hp-phone-content .hp-phone-shot { inset: 0; }
+.hp-phone-content { background: var(--canvas); }
+.hp-phone-content .hp-phone-shot {
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 28px);
+  object-fit: contain;
+  object-position: top center;
+}
+.hp-iphone-screen,
+.hp-phone-content,
+.hp-status-bar { background: #f5f5f7; }
+.hp-status-bar { font-size: 17px; }
 
 /* ---------- Native scroll focus ---------- */
 html {
@@ -1467,44 +1436,6 @@ main > section[id] {
   transform: none;
   opacity: 1;
 }
-.hp-hero-device-status {
-  position: absolute;
-  top: 4.3%;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #1d1d1f;
-  font-size: clamp(6px, 0.65vw, 10px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  transform: rotate(-5deg);
-  transform-origin: left center;
-}
-.hp-hero-device-status-left { left: 4.2%; width: 27%; }
-.hp-hero-device-status-right { left: 42%; width: 30%; }
-.hp-hero-device-icons { display: inline-flex; align-items: center; gap: 3px; }
-.hp-hero-device-icons svg { width: 1.05em; height: 0.72em; fill: currentColor; }
-.hp-hero-device-icons svg:nth-child(2) { fill: none; stroke: currentColor; stroke-linecap: round; stroke-width: 1.3; }
-.hp-hero-device-icons svg:nth-child(3) { fill: none; stroke: currentColor; stroke-width: 1.05; }
-@media (max-width: 960px) {
-  .hp-hero-enhanced { min-height: 600px; }
-  .hp-hero-devices { right: -10vw; width: min(84vw, 720px); }
-}
-@media (max-width: 680px) {
-  .hp-hero-enhanced { min-height: 600px; padding-top: 48px; }
-  .hp-hero-devices {
-    top: 410px;
-    right: -12%;
-    width: 112%;
-    transform: none;
-    opacity: 0.34;
-  }
-  .hp-hero-device-status { font-size: 7px; }
-}
-
-
 /* Keep the hero reveal calm: the devices are a supporting object, not the headline. */
 .hp-hero-devices { width: min(52vw, 600px); }
 @media (max-width: 960px) {
@@ -1580,7 +1511,7 @@ main > section[id] {
   left: calc(50% - clamp(8px, 2.2vw, 32px));
   width: min(46vw, 540px);
   transform: translateY(-50%);
-  opacity: 0.68;
+  opacity: 0.92;
 }
 .hp-hero-copy-panel {
   z-index: 1;
@@ -1599,9 +1530,9 @@ main > section[id] {
     right: auto;
     bottom: -180px;
     left: 40%;
-    width: min(66vw, 540px);
+    width: min(70vw, 580px);
     transform: none;
-    opacity: 0.2;
+    opacity: 0.78;
   }
 }
 
@@ -1629,7 +1560,7 @@ main > section[id] {
     left: -8%;
     width: 112%;
     transform: none;
-    opacity: 0.24;
+    opacity: 0.72;
   }
 }
 
@@ -4014,4 +3945,832 @@ a.hp-input-data-row:focus-visible {
 .hp-input-search-card .hp-input-card-copy > span {
   font-size: 0.6875rem;
   line-height: 1.3;
+}
+
+
+/* Leave a small, deliberate inset around the grouped top navigation. */
+.hp-topbar { height: calc(60px + var(--sat)); }
+.hp-topbar-inner { height: 60px; }
+.hp-topbar .hp-nav { margin-block: 4px; }
+.hp-menu-root { inset: calc(60px + var(--sat)) 0 0 0; }
+
+
+/* =========================================================================
+   Landing motion layer
+   Transferable lessons: floating chrome, clear scroll staging, deliberate
+   reveals, and an animated one-open FAQ.
+   The palette and touch sizing remain Regola / Apple HIG monochrome defaults.
+   ========================================================================= */
+
+/* The navigation is a floating control, not a hard horizontal rule. */
+.hp-topbar {
+  border-bottom: 0;
+  background: transparent;
+  isolation: isolate;
+}
+.hp-topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 104px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(245, 245, 247, 0.96), rgba(245, 245, 247, 0.78) 44%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.92) 42%, transparent);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.92) 42%, transparent);
+}
+.hp-topbar-inner { position: relative; }
+.hp-nav {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+}
+
+/* ---------- Hero: a quiet statement over the product object ---------- */
+.hp-hero-enhanced {
+  min-height: max(680px, calc(100svh - 60px));
+  padding-top: clamp(80px, 12vh, 140px);
+  padding-bottom: clamp(72px, 11vh, 128px);
+}
+.hp-hero-copy-panel {
+  border-radius: 28px;
+  box-shadow: 0 28px 80px -28px rgba(0, 0, 0, 0.24);
+}
+.hp-hero-enhanced h1 {
+  font-weight: 650;
+  letter-spacing: -0.06em;
+}
+.hp-hero-enhanced .hp-hero-wordmark {
+  font-weight: inherit;
+}
+.hp-hero-enhanced .hp-hero-cta {
+  transition: opacity 0.18s var(--ease-spring-snappy), box-shadow 0.28s var(--ease-spring);
+  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.58);
+}
+.hp-hero-enhanced .hp-hero-cta:hover {
+  box-shadow: 0 16px 30px -12px rgba(0, 0, 0, 0.52);
+}
+.hp-hero-enhanced .hp-hero-cta:active { box-shadow: none; }
+
+/* ---------- Questions and inquiry ---------- */
+.hp-faq-section { border-top: 1px solid var(--separator-light); }
+.hp-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 8vw, 112px);
+  align-items: start;
+}
+.hp-faq-intro {
+  position: sticky;
+  top: calc(84px + var(--sat));
+  margin-bottom: 0;
+}
+.hp-faq-intro a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.18s ease;
+}
+.hp-faq-intro a:hover { opacity: 0.66; }
+.hp-faq-list { border-top: 1px solid var(--separator-light); }
+.hp-faq-item { border-bottom: 1px solid var(--separator-light); }
+.hp-faq-item h3 { margin: 0; }
+.hp-faq-item button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  min-height: 72px;
+  padding: 14px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.hp-faq-item button:hover { color: var(--secondary); }
+.hp-faq-item button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+.hp-faq-icon {
+  position: relative;
+  display: grid;
+  flex: 0 0 28px;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--separator-light);
+  border-radius: 50%;
+  color: var(--secondary);
+  line-height: 0;
+  transition: transform 0.3s var(--ease-out-quint), background 0.22s ease, color 0.22s ease;
+}
+.hp-faq-glyph,
+.hp-faq-glyph::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+.hp-faq-glyph::after { transform: translate(-50%, -50%) rotate(90deg); }
+.hp-faq-icon.is-open {
+  color: var(--paper);
+  background: var(--text);
+  transform: rotate(45deg);
+}
+.hp-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition: grid-template-rows 0.38s var(--ease-out-quint), opacity 0.22s var(--ease-spring);
+}
+.hp-faq-answer.is-open { grid-template-rows: 1fr; opacity: 1; }
+.hp-faq-answer-inner { min-height: 0; overflow: hidden; }
+.hp-faq-answer p {
+  max-width: 38rem;
+  margin: -2px 48px 22px 0;
+  color: var(--secondary);
+  font-size: 0.9375rem;
+  line-height: 1.58;
+}
+.hp-faq-answer[aria-hidden="true"] { pointer-events: none; }
+@media (max-width: 960px) {
+  .hp-faq-layout { grid-template-columns: 1fr; gap: 40px; }
+  .hp-faq-intro { position: static; }
+}
+@media (max-width: 680px) {
+  .hp-topbar::before { height: 84px; }
+  .hp-hero-enhanced { min-height: max(700px, calc(100svh - 60px)); }
+  .hp-hero-copy-panel { border-radius: 22px; }
+  .hp-faq-section { padding-inline: max(16px, var(--sal)); }
+  .hp-faq-item button { min-height: 68px; font-size: 0.9375rem; }
+  .hp-faq-answer p { margin-right: 0; }
+}
+
+
+
+/* Restore the original product stop: one viewport of pinned space plus a
+   compact beat per step, then release into the next section. */
+#product .hp-scrolly {
+  height: calc(100vh + var(--hp-steps, 5) * 28vh);
+}
+@media (min-width: 961px) {
+  #product .hp-scrolly-panel {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+  }
+}
+@media (max-width: 960px) {
+  #product .hp-scrolly { height: auto; }
+}
+
+
+/* Final simplification pass: the product is the visual object, not a card. */
+.hp-hero-copy-panel {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+
+/* Charts enter as evidence, not as a page-load spectacle. */
+.hp-native-chart.is-awaiting {
+  opacity: 0;
+  transform: translateY(24px) scale(0.985);
+}
+.hp-native-chart.is-entered {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s var(--ease-out-quint), transform 0.7s var(--ease-out-quint);
+}
+.hp-native-chart.is-entered .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-bar,
+.hp-native-chart.is-entered .hp-waste-track > span {
+  animation: hp-chart-fill 0.8s var(--ease-out-quint) both;
+}
+.hp-native-chart.is-entered .hp-week-column:nth-child(2) .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-row:nth-child(2) .hp-nutrient-bar { animation-delay: 70ms; }
+.hp-native-chart.is-entered .hp-week-column:nth-child(3) .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-row:nth-child(3) .hp-nutrient-bar { animation-delay: 140ms; }
+.hp-native-chart.is-entered .hp-week-column:nth-child(4) .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-row:nth-child(4) .hp-nutrient-bar { animation-delay: 210ms; }
+@keyframes hp-chart-fill {
+  from { opacity: 0.15; transform: scaleY(0.12); transform-origin: bottom; }
+  to { opacity: 1; transform: scaleY(1); transform-origin: bottom; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-native-chart.is-awaiting,
+  .hp-native-chart.is-entered {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hp-native-chart.is-entered .hp-week-bar,
+  .hp-native-chart.is-entered .hp-nutrient-bar,
+  .hp-native-chart.is-entered .hp-waste-track > span { animation: none; }
+}
+
+
+/* Reintroduce the useful entry rhythm without bringing back decorative chrome. */
+.hp-hero-copy-panel > *,
+.hp-hero-devices {
+  animation: hp-entry-fade 0.7s var(--ease-out-quint) both;
+}
+.hp-hero-copy-panel > *:nth-child(1) { animation-delay: 80ms; }
+.hp-hero-copy-panel > *:nth-child(2) { animation-delay: 180ms; }
+.hp-hero-copy-panel > *:nth-child(3) { animation-delay: 280ms; }
+.hp-hero-devices { animation-delay: 120ms; }
+@keyframes hp-entry-fade {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+.hp-hero-devices {
+  animation-name: hp-device-entry;
+}
+@keyframes hp-device-entry {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.hp-entry-reveal {
+  transition: opacity 0.7s var(--ease-out-quint), transform 0.7s var(--ease-out-quint);
+}
+.hp-entry-reveal.is-awaiting {
+  opacity: 1;
+  transform: translateY(20px);
+}
+.hp-entry-reveal.is-entered {
+  opacity: 1;
+  transform: none;
+}
+
+/* Panels keep their content readable before intersection, then settle each
+   meaningful block in sequence. The motion is transform-first and quiet. */
+.hp-entry-reveal [data-reveal-item] {
+  opacity: 1;
+  transform: translateY(12px);
+  transition: opacity 0.62s var(--ease-out-quint), transform 0.62s var(--ease-out-quint);
+}
+.hp-entry-reveal.is-entered [data-reveal-item] {
+  opacity: 1;
+  transform: none;
+}
+.hp-entry-reveal [data-reveal-item="heading"] { transition-delay: 40ms; }
+.hp-entry-reveal [data-reveal-item="evidence"],
+.hp-entry-reveal [data-reveal-item="overview"] { transition-delay: 130ms; }
+.hp-entry-reveal [data-reveal-item="plots"],
+.hp-entry-reveal [data-reveal-item="list"] { transition-delay: 210ms; }
+.hp-entry-reveal [data-reveal-item="details"] { transition-delay: 280ms; }
+@media (prefers-reduced-motion: reduce) {
+  .hp-hero-copy-panel > *,
+  .hp-hero-devices,
+  .hp-entry-reveal.is-awaiting,
+  .hp-entry-reveal.is-entered,
+  .hp-entry-reveal [data-reveal-item],
+  .hp-faq-answer {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* The active section is one moving surface, not three unrelated selected pills. */
+.hp-nav { position: relative; }
+.hp-nav-indicator {
+  position: absolute;
+  inset: 3px auto 3px 0;
+  z-index: 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+  transition: width 0.38s var(--ease-out-quint), transform 0.38s var(--ease-out-quint);
+}
+.hp-topbar .hp-nav-link { position: relative; z-index: 1; }
+.hp-topbar .hp-nav-link.active,
+.hp-topbar .hp-nav-link.active:hover { background: transparent; box-shadow: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hp-nav-indicator { transition: none; }
+}
+
+
+.hp-product-progress {
+  width: 100%;
+  height: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+  background: var(--separator-light);
+}
+.hp-product-progress > span {
+  display: block;
+  height: 100%;
+  background: var(--text);
+  transition: width 0.46s var(--ease-out-quint);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-product-progress > span { transition: none; }
+}
+
+
+/* Algorithm inputs use the index's white-stone / black-seam language. */
+.hp-optimizer-card-stack {
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--text);
+  border-radius: 6px;
+  background: var(--text);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+.hp-input-search-card,
+.hp-input-data-row {
+  border: 0;
+  border-radius: 3px;
+  background: var(--paper);
+  color: var(--text);
+  transition: background-color 0.24s var(--ease-out-quint), color 0.2s ease, transform 0.24s var(--ease-out-quint);
+}
+.hp-input-search-card {
+  min-height: 76px;
+  padding: 14px;
+}
+.hp-input-data-row {
+  min-height: 68px;
+  padding: 12px 14px;
+}
+.hp-input-data-row:hover,
+.hp-input-data-row:focus-visible,
+.hp-input-data-row.is-active {
+  background: var(--text);
+  color: var(--paper);
+  transform: translateX(2px);
+}
+.hp-input-data-row:focus-visible { outline-color: var(--text); outline-offset: 2px; }
+.hp-input-data-row:hover .hp-input-card-copy > span,
+.hp-input-data-row:focus-visible .hp-input-card-copy > span,
+.hp-input-data-row.is-active .hp-input-card-copy > span,
+.hp-input-data-row:hover > svg,
+.hp-input-data-row:focus-visible > svg,
+.hp-input-data-row.is-active > svg {
+  color: rgba(255, 255, 255, 0.72);
+}
+.hp-input-search-card.is-contextual {
+  background: var(--text);
+  color: var(--paper);
+}
+.hp-input-search-card.is-contextual .hp-input-card-copy > span { color: rgba(255, 255, 255, 0.72); }
+@media (prefers-reduced-motion: reduce) {
+  .hp-input-search-card,
+  .hp-input-data-row { transition: none; }
+}
+
+
+/* gbrlpzz/index palette: white stone surfaces, black ink, and precise seams. */
+:root {
+  --canvas: #ffffff;
+  --paper: #ffffff;
+  --text: #000000;
+  --secondary: #4b4b50;
+  --tertiary: #71717a;
+  --separator: rgba(0, 0, 0, 0.24);
+  --separator-light: rgba(0, 0, 0, 0.14);
+  --grouped: #ffffff;
+  --accent: #000000;
+  --accent-text: #ffffff;
+  --glass: rgba(255, 255, 255, 0.92);
+  --focus-ring: #000000;
+}
+.hp-hero-media::after { background: rgba(255, 255, 255, 0.72); }
+.hp-topbar,
+.hp-topbar-inner { background: rgba(255, 255, 255, 0.92); }
+.hp-topbar::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.82) 44%, transparent);
+}
+@media (max-width: 680px) {
+  .hp-hero-media::after { background: rgba(255, 255, 255, 0.86); }
+}
+
+
+/* The algorithm inputs are an information rail, not a pile of cards. */
+.hp-optimizer-card-stack {
+  gap: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.hp-input-search-card,
+.hp-input-data-row {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+.hp-input-search-card {
+  min-height: 0;
+  padding: 0 0 18px;
+  border-bottom: 2px solid var(--text);
+}
+.hp-input-data-row {
+  min-height: 58px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--separator-light);
+}
+.hp-input-data-row:hover,
+.hp-input-data-row:focus-visible,
+.hp-input-data-row.is-active {
+  background: transparent;
+  color: var(--text);
+  transform: none;
+}
+.hp-input-data-row:hover,
+.hp-input-data-row:focus-visible,
+.hp-input-data-row.is-active {
+  padding-left: 10px;
+  border-left: 2px solid var(--text);
+}
+.hp-input-data-row:hover .hp-input-card-copy > span,
+.hp-input-data-row:focus-visible .hp-input-card-copy > span,
+.hp-input-data-row.is-active .hp-input-card-copy > span,
+.hp-input-data-row:hover > svg,
+.hp-input-data-row:focus-visible > svg,
+.hp-input-data-row.is-active > svg {
+  color: var(--secondary);
+}
+.hp-input-search-card.is-contextual {
+  background: transparent;
+  color: var(--text);
+}
+.hp-input-search-card.is-contextual .hp-input-card-copy > span { color: var(--secondary); }
+
+
+/* The source rail stays quiet. Keyboard focus gets a visible marker. */
+.hp-input-data-row:hover,
+.hp-input-data-row.is-active {
+  padding-left: 0;
+  border-left: 0;
+}
+.hp-input-data-row:focus-visible {
+  padding-left: 10px;
+  border-left: 2px solid var(--text);
+}
+
+
+/* Nested beats keep long sections from arriving as one block. */
+.hp-entry-reveal .hp-optimizer-card-stack > *,
+.hp-entry-reveal .hp-results-overview > *,
+.hp-entry-reveal .hp-faq-item {
+  opacity: 0.96;
+  transform: translateY(8px);
+  transition: opacity 0.52s var(--ease-out-quint), transform 0.52s var(--ease-out-quint);
+}
+.hp-entry-reveal.is-entered .hp-optimizer-card-stack > *,
+.hp-entry-reveal.is-entered .hp-results-overview > *,
+.hp-entry-reveal.is-entered .hp-faq-item {
+  opacity: 1;
+  transform: none;
+}
+.hp-entry-reveal .hp-optimizer-card-stack > *:nth-child(2),
+.hp-entry-reveal .hp-results-overview > *:nth-child(1),
+.hp-entry-reveal .hp-faq-item:nth-child(1) { transition-delay: 80ms; }
+.hp-entry-reveal .hp-optimizer-card-stack > *:nth-child(3),
+.hp-entry-reveal .hp-results-overview > *:nth-child(2),
+.hp-entry-reveal .hp-faq-item:nth-child(2) { transition-delay: 140ms; }
+.hp-entry-reveal .hp-optimizer-card-stack > *:nth-child(4),
+.hp-entry-reveal .hp-results-overview > *:nth-child(3),
+.hp-entry-reveal .hp-faq-item:nth-child(3) { transition-delay: 200ms; }
+.hp-entry-reveal .hp-optimizer-card-stack > *:nth-child(5),
+.hp-entry-reveal .hp-results-overview > *:nth-child(4),
+.hp-entry-reveal .hp-faq-item:nth-child(4) { transition-delay: 260ms; }
+.hp-entry-reveal .hp-optimizer-card-stack > *:nth-child(6),
+.hp-entry-reveal .hp-faq-item:nth-child(5) { transition-delay: 320ms; }
+@media (prefers-reduced-motion: reduce) {
+  .hp-entry-reveal .hp-optimizer-card-stack > *,
+  .hp-entry-reveal .hp-results-overview > *,
+  .hp-entry-reveal .hp-faq-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* The algorithm source list stays quiet and factual. */
+.hp-input-rail {
+  min-width: 0;
+  padding-top: 2px;
+}
+.hp-input-rail-label {
+  margin: 0 0 12px;
+  color: var(--tertiary);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.hp-input-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--separator-light);
+}
+.hp-input-list li {
+  min-height: 56px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--separator-light);
+  color: var(--text);
+  font-size: 0.8125rem;
+}
+.hp-input-list li > span,
+.hp-input-list li > a > span {
+  color: var(--secondary);
+  text-align: right;
+}
+.hp-input-list li > a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+.hp-input-list li > a:hover { color: var(--secondary); }
+.hp-input-list li > a:focus-visible { outline-offset: 5px; }
+@media (max-width: 780px) {
+  .hp-input-list li { gap: 10px; }
+}
+
+
+/* Each graph enters as a small sequence: frame, marks, then labels. */
+.hp-native-chart.is-entered .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-bar,
+.hp-native-chart.is-entered .hp-waste-track > span {
+  animation-delay: var(--chart-delay, 0ms);
+}
+.hp-frontier-plot.is-entered .hp-frontier-path polyline {
+  animation-duration: 820ms;
+  animation-delay: 360ms;
+}
+.hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-dot {
+  animation-delay: calc(520ms + var(--point-delay, 0ms));
+}
+.hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-point-label {
+  animation-delay: calc(700ms + var(--point-delay, 0ms));
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-frontier-plot.is-entered .hp-frontier-path polyline,
+  .hp-frontier-plot.is-entered .hp-frontier-point .hp-frontier-dot,
+  .hp-frontier-plot.is-entered .hp-frontier-point-label {
+    animation: none;
+  }
+}
+
+
+/* Keep evidence animation long enough to read while it enters. */
+.hp-native-chart.is-entered .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-bar,
+.hp-native-chart.is-entered .hp-waste-track > span {
+  animation-duration: 1.1s;
+}
+.hp-frontier-plot.is-entered .hp-frontier-path polyline {
+  animation-duration: 1.2s;
+  animation-delay: 480ms;
+}
+.hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-dot {
+  animation-delay: calc(760ms + var(--point-delay, 0ms));
+}
+.hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-point-label {
+  animation-delay: calc(980ms + var(--point-delay, 0ms));
+}
+
+
+/* The graph frame is present; only the data marks wait for the central-band
+   trigger. This makes each bar visibly grow from its own baseline. */
+.hp-native-chart.is-awaiting {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.hp-native-chart.is-awaiting .hp-week-bar,
+.hp-native-chart.is-awaiting .hp-nutrient-bar,
+.hp-native-chart.is-awaiting .hp-waste-track > span {
+  opacity: 0;
+  transform: scaleY(0.02);
+  transform-origin: bottom;
+}
+.hp-native-chart.is-entered .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-bar,
+.hp-native-chart.is-entered .hp-waste-track > span {
+  transform-origin: bottom;
+  will-change: transform, opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-native-chart.is-awaiting .hp-week-bar,
+  .hp-native-chart.is-awaiting .hp-nutrient-bar,
+  .hp-native-chart.is-awaiting .hp-waste-track > span {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* Match the step selector to the navigation control exactly. */
+.hp-admin-tab-selector {
+  gap: 4px;
+  padding: 3px 4px;
+  border: 1px solid var(--separator-light);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+}
+.hp-admin-step-btn {
+  color: var(--secondary);
+  border-radius: 999px;
+  background: transparent;
+  transition: color 0.15s ease, background-color 0.15s ease, opacity 0.12s ease;
+}
+.hp-admin-step-btn:hover { color: var(--text); background: rgba(255, 255, 255, 0.6); }
+.hp-admin-step-btn.active {
+  color: var(--text);
+  background: var(--paper);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-admin-step-btn { transition: none; }
+}
+
+/* Give the bar charts the same slow, readable construction as the frontier. */
+.hp-native-chart.is-entered .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-bar,
+.hp-native-chart.is-entered .hp-waste-track > span {
+  animation-duration: 1.8s;
+}
+
+
+/* Progressive graph reveal: transition each data mark from its own starting
+   state. Do not use a keyframe delay here; the fade and growth must be visible. */
+.hp-native-chart.is-awaiting .hp-week-bar,
+.hp-native-chart.is-awaiting .hp-nutrient-bar,
+.hp-native-chart.is-awaiting .hp-waste-track > span {
+  opacity: 0;
+  transform: scaleY(0.02);
+  transform-origin: bottom;
+}
+.hp-native-chart.is-entered .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-bar,
+.hp-native-chart.is-entered .hp-waste-track > span {
+  opacity: 1;
+  transform: scaleY(1);
+  transform-origin: bottom;
+  animation: none !important;
+  transition: opacity 1.15s var(--ease-out-quint), transform 1.8s var(--ease-out-quint);
+  transition-delay: var(--chart-delay, 0ms);
+}
+.hp-frontier-plot.is-awaiting .hp-frontier-dot {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.42);
+}
+.hp-frontier-plot.is-awaiting .hp-frontier-point-label {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.hp-frontier-plot.is-awaiting .hp-frontier-path polyline {
+  opacity: 0;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+.hp-frontier-plot.is-entered .hp-frontier-dot {
+  opacity: 0.72;
+  transform: translate(-50%, -50%) scale(1);
+  animation: none !important;
+  transition: opacity 0.9s var(--ease-out-quint), transform 1.05s var(--ease-out-quint);
+  transition-delay: var(--point-delay, 0ms);
+}
+.hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-dot {
+  opacity: 1;
+  transition-delay: calc(260ms + var(--point-delay, 0ms));
+}
+.hp-frontier-plot.is-entered .hp-frontier-point-label {
+  opacity: 1;
+  transform: none;
+  animation: none !important;
+  transition: opacity 0.9s var(--ease-out-quint), transform 0.9s var(--ease-out-quint);
+  transition-delay: calc(420ms + var(--point-delay, 0ms));
+}
+.hp-frontier-plot.is-entered .hp-frontier-path polyline {
+  opacity: 1;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  animation: none !important;
+  transition: opacity 0.8s ease, stroke-dashoffset 1.7s var(--ease-out-quint);
+  transition-delay: 180ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-native-chart.is-entered .hp-week-bar,
+  .hp-native-chart.is-entered .hp-nutrient-bar,
+  .hp-native-chart.is-entered .hp-waste-track > span,
+  .hp-frontier-plot.is-entered .hp-frontier-dot,
+  .hp-frontier-plot.is-entered .hp-frontier-point-label,
+  .hp-frontier-plot.is-entered .hp-frontier-path polyline {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+    transition: none;
+  }
+  .hp-frontier-plot.is-entered .hp-frontier-path polyline { stroke-dashoffset: 0; }
+}
+
+
+/* Final graph transition pass: keep every plotted point, then reveal each
+   mark with a long, smooth transition rather than a delayed keyframe. */
+.hp-native-chart.is-entered .hp-week-bar,
+.hp-native-chart.is-entered .hp-nutrient-bar,
+.hp-native-chart.is-entered .hp-waste-track > span {
+  animation: none !important;
+  transition-duration: 2.4s, 1.6s;
+  transition-timing-function: cubic-bezier(0.22, 0.68, 0.35, 1), cubic-bezier(0.22, 0.68, 0.35, 1);
+}
+.hp-frontier-plot.is-entered .hp-frontier-point.is-other .hp-frontier-dot {
+  opacity: 0.72;
+  transform: translate(-50%, -50%) scale(1);
+  animation: none !important;
+  transition: opacity 1.2s cubic-bezier(0.22, 0.68, 0.35, 1), transform 1.5s cubic-bezier(0.22, 0.68, 0.35, 1);
+  transition-delay: var(--point-delay, 0ms);
+}
+.hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-dot {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  animation: none !important;
+  transition: opacity 1.2s cubic-bezier(0.22, 0.68, 0.35, 1), transform 1.5s cubic-bezier(0.22, 0.68, 0.35, 1);
+  transition-delay: calc(260ms + var(--point-delay, 0ms));
+}
+.hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-point-label {
+  opacity: 1;
+  transform: translateY(0);
+  animation: none !important;
+  transition: opacity 1.2s cubic-bezier(0.22, 0.68, 0.35, 1), transform 1.2s cubic-bezier(0.22, 0.68, 0.35, 1);
+  transition-delay: calc(420ms + var(--point-delay, 0ms));
+}
+.hp-frontier-plot.is-entered .hp-frontier-path polyline {
+  opacity: 1;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  animation: none !important;
+  transition: opacity 1.2s cubic-bezier(0.22, 0.68, 0.35, 1), stroke-dashoffset 2.4s cubic-bezier(0.22, 0.68, 0.35, 1);
+  transition-delay: 180ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-native-chart.is-entered .hp-week-bar,
+  .hp-native-chart.is-entered .hp-nutrient-bar,
+  .hp-native-chart.is-entered .hp-waste-track > span,
+  .hp-frontier-plot.is-entered .hp-frontier-point.is-other .hp-frontier-dot,
+  .hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-dot,
+  .hp-frontier-plot.is-entered .hp-frontier-point.is-selected .hp-frontier-point-label,
+  .hp-frontier-plot.is-entered .hp-frontier-path polyline {
+    transition: none;
+    animation: none !important;
+  }
+}
+
+
+/* Each graph is a deliberate reading stop. The page already provides the
+   vertical snap container; these targets center the plot before it begins. */
+.hp-native-chart,
+.hp-frontier-plot {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  scroll-margin-block: 12vh;
+}
+@media (max-width: 780px) {
+  .hp-native-chart,
+  .hp-frontier-plot {
+    scroll-snap-stop: normal;
+    scroll-margin-block: 8vh;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-native-chart,
+  .hp-frontier-plot { scroll-snap-stop: normal; }
 }

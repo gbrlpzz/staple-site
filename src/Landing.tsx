@@ -1,13 +1,15 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { ProductCopy, ProductPhone } from "./components/ProductScrolly";
+import { FAQ } from "./components/FAQ";
+import { RevealOnEntry } from "./components/RevealOnEntry";
 import { ResearchPanel } from "./components/ResearchPanel";
 import { ResultsPanel } from "./components/ResultsPanel";
-import { CONTACT_EMAIL, HERO } from "./data/benchmark";
+import { HERO } from "./data/benchmark";
 import { INQUIRE_HREF, MobileMenu, SECTION_LINKS, SiteNav } from "./components/SiteNav";
 import { useScrollytelling } from "./useScrollytelling";
 import { useSectionSpy } from "./useSectionSpy";
 
-const SECTION_IDS = [...SECTION_LINKS.map((link) => link.id), "inquire"];
+const SECTION_IDS = SECTION_LINKS.map((link) => link.id);
 
 function cssVar(name: `--${string}`, value: string | number): CSSProperties {
   return { [name]: value } as CSSProperties;
@@ -76,10 +78,12 @@ export function Landing() {
           <div className="hp-scrolly" ref={product.ref} style={cssVar("--hp-steps", 5)}>
             <div className="hp-scrolly-panel">
               <div className="hp-section-inner">
-                <div className="hp-flow-layout">
-                  <ProductCopy active={product.active} onSelect={product.goToStep} />
-                  <ProductPhone active={product.active} />
-                </div>
+                <RevealOnEntry>
+                  <div className="hp-flow-layout">
+                    <ProductCopy active={product.active} onSelect={product.goToStep} />
+                    <ProductPhone active={product.active} />
+                  </div>
+                </RevealOnEntry>
               </div>
             </div>
           </div>
@@ -87,30 +91,22 @@ export function Landing() {
 
         <section className="hp-section hp-section-paper" id="research" aria-labelledby="research-title">
           <div className="hp-section-inner">
-            <ResearchPanel />
+            <RevealOnEntry><ResearchPanel /></RevealOnEntry>
           </div>
         </section>
 
         <section className="hp-section hp-section-canvas" id="results" aria-labelledby="results-title">
           <div className="hp-section-inner">
-            <ResultsPanel />
+            <RevealOnEntry><ResultsPanel /></RevealOnEntry>
           </div>
         </section>
 
-        <section className="hp-section" id="inquire">
+        <section className="hp-section hp-section-paper hp-faq-section" id="faq" aria-labelledby="faq-title">
           <div className="hp-section-inner">
-            <div className="section-heading">
-              <p className="eyebrow">Contact</p>
-              <h2>Inquire.</h2>
-              <p>
-                For questions about the optimizer, retail integration, research, licensing or partnerships, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
-              </p>
-            </div>
-            <a className="button button-primary hp-inquire-cta" href={INQUIRE_HREF}>
-              Inquire
-            </a>
+            <RevealOnEntry><FAQ /></RevealOnEntry>
           </div>
         </section>
+
       </main>
 
       <footer className="hp-footer">
@@ -119,7 +115,6 @@ export function Landing() {
             <a className="hp-brand" href="#top" aria-label="Staple home">
               <span className="collect-wordmark">staple</span>
             </a>
-            <p>Personal nutrition system.</p>
           </div>
           <nav className="hp-footer-links" aria-label="Footer">
             <div>
@@ -127,14 +122,14 @@ export function Landing() {
               <a href="#product">Weekly loop</a>
             </div>
             <div>
-              <span className="hp-footer-heading">Research</span>
-              <a href="#research">Research</a>
+              <span className="hp-footer-heading">Algorithm</span>
+              <a href="#research">Algorithm</a>
               <a href="#results">Results</a>
             </div>
             <div>
               <span className="hp-footer-heading">Contact</span>
               <a href={INQUIRE_HREF}>Inquire</a>
-              <a href="https://gabrielepizzi.com">gbrlpzz.com</a>
+              <a href="https://gabrielepizzi.com">gabrielepizzi.com</a>
             </div>
           </nav>
           <p className="hp-footer-legal">

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * Shared by the top navigation and the mobile sheet.
  */
 export function useSectionSpy(sectionIds: string[], offset = 140): string {
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState(sectionIds[0] ?? "");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +25,7 @@ export function useSectionSpy(sectionIds: string[], offset = 140): string {
         }
         if (scrollPos >= top) last = id;
       }
-      if (!current && scrollPos >= firstTop) current = last;
+      if (!current) current = scrollPos < firstTop ? (sectionIds[0] ?? "") : last;
       setActive(current);
     };
 

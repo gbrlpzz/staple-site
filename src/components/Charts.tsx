@@ -27,7 +27,31 @@ function ChartHeading({
   );
 }
 
+function useEntryReveal() {
+  const ref = useRef<HTMLElement>(null);
+  const [entered, setEntered] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    if (typeof window.IntersectionObserver !== "function") {
+      setEntered(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return;
+      setEntered(true);
+      observer.disconnect();
+    }, { rootMargin: "-33% 0px -33% 0px", threshold: 0.01 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, entered };
+}
+
 export function SpendChart({ showTitle = true }: ChartProps) {
+  const reveal = useEntryReveal();
   const weeks = benchmark.weeklyExpenditure;
   const maxValue = Math.max(benchmark.cost.habePerWeek, ...weeks.map((row) => row.stapleChf));
   const max = Math.ceil(maxValue / 20) * 20;
@@ -35,7 +59,7 @@ export function SpendChart({ showTitle = true }: ChartProps) {
   const summary = weeks.map((row) => `week ${row.week}: ${formatChf(row.stapleChf)}`).join("; ");
 
   return (
-    <figure className="plot hp-native-chart hp-spend-plot" aria-label={`Shop cost by week. ${summary}. Swiss Household Budget Survey context: ${formatChf(benchmark.cost.habePerWeek)} per week.`}>
+    <figure ref={reveal.ref} className={`plot hp-native-chart hp-spend-plot ${reveal.entered ? "is-entered" : "is-awaiting"}`} aria-label={`Shop cost by week. ${summary}. Swiss Household Budget Survey context: ${formatChf(benchmark.cost.habePerWeek)} per week.`}>
       <ChartHeading title="Shop cost by week" unit="CHF per week" compact={!showTitle} />
       <div className="hp-chart-summary" aria-hidden="true">
         <div><span>Eight-week mean</span><strong>{formatChf(benchmark.cost.staplePerWeek)}</strong></div>
@@ -54,7 +78,7 @@ export function SpendChart({ showTitle = true }: ChartProps) {
                 <span className="hp-week-value" style={{ bottom: `calc(${(row.stapleChf / max) * 100}% + 5px)` }}>{row.stapleChf.toFixed(1)}</span>
                 <span
                   className={`hp-week-bar ${index === 0 ? "is-pantry-fill" : ""}`}
-                  style={chartVars({ "bar-height": `${(row.stapleChf / max) * 100}%` })}
+                  style={chartVars({ "bar-height": `${(row.stapleChf / max) * 100}%`, "chart-delay": `${index * 160}ms` })}
                 />
               </div>
             ))}
@@ -70,6 +94,7 @@ export function SpendChart({ showTitle = true }: ChartProps) {
 }
 
 export function NutrientChart({ showTitle = true }: ChartProps) {
+  const reveal = useEntryReveal();
   const byId = new Map(benchmark.nutrients.map((row) => [row.id, row]));
   const rows = NUTRIENT_ORDER.map((id) => byId.get(id)).filter(
     (row): row is (typeof benchmark.nutrients)[number] => Boolean(row),
@@ -79,7 +104,7 @@ export function NutrientChart({ showTitle = true }: ChartProps) {
   const targetPosition = `${(100 / scaleMax) * 100}%`;
 
   return (
-    <figure className="plot hp-native-chart hp-nutrient-plot">
+    <figure ref={reveal.ref} className={`plot hp-native-chart hp-nutrient-plot ${reveal.entered ? "is-entered" : "is-awaiting"}`}>
       <ChartHeading title="All ten MAR-10 nutrients" unit="Percent of nutrition reference" compact={!showTitle} />
       <div className="hp-chart-legend" aria-hidden="true">
         <span><i className="hp-legend-mark hp-legend-staple" />Staple</span>
@@ -95,7 +120,7 @@ export function NutrientChart({ showTitle = true }: ChartProps) {
                 <strong>{row.name}</strong>
                 <span>Staple {row.staplePct}% · {menu == null ? "survey value unavailable" : `Swiss survey ${menu}%`}</span>
               </div>
-              <div className="hp-nutrient-pair" aria-hidden="true" style={chartVars({ "target-position": targetPosition })}>
+              <div className="hp-nutrient-pair" aria-hidden="true" style={chartVars({ "target-position": targetPosition, "chart-delay": `${rows.indexOf(row) * 120}ms` })}>
                 <div className="hp-nutrient-track">
                   <span className="hp-nutrient-target" />
                   <span className="hp-nutrient-bar hp-nutrient-bar-staple" style={{ width: `${(row.staplePct / scaleMax) * 100}%` }} />
@@ -115,6 +140,7 @@ export function NutrientChart({ showTitle = true }: ChartProps) {
 }
 
 export function WasteChart({ showTitle = true }: ChartProps) {
+  const reveal = useEntryReveal();
   const rows = [
     { label: "Staple", value: benchmark.waste.stapleGPerWeek, className: "hp-waste-bar-staple" },
     { label: "Swiss household discard context", value: benchmark.waste.foenGPerWeek, className: "hp-waste-bar-context" },
@@ -122,13 +148,13 @@ export function WasteChart({ showTitle = true }: ChartProps) {
   const max = Math.max(...rows.map((row) => row.value));
 
   return (
-    <figure className="plot hp-native-chart hp-waste-plot">
+    <figure ref={reveal.ref} className={`plot hp-native-chart hp-waste-plot ${reveal.entered ? "is-entered" : "is-awaiting"}`}>
       <ChartHeading title="Modeled edible waste" unit="Grams per week" compact={!showTitle} />
       <div className="hp-waste-bars" aria-label={`Modeled edible waste per week: Staple ${benchmark.waste.stapleGPerWeek} grams; Swiss household discard context ${benchmark.waste.foenGPerWeek} grams`}>
         {rows.map((row) => (
           <div className="hp-waste-row" key={row.label}>
             <div className="hp-waste-label"><strong>{row.label}</strong><b>{row.value.toLocaleString("en-GB")} g</b></div>
-            <div className="hp-waste-track" aria-hidden="true"><span className={row.className} style={{ width: `${(row.value / max) * 100}%` }} /></div>
+            <div className="hp-waste-track" aria-hidden="true"><span className={row.className} style={{ width: `${(row.value / max) * 100}%`, "--chart-delay": `${rows.indexOf(row) * 240}ms` } as CSSProperties} /></div>
           </div>
         ))}
       </div>
@@ -169,7 +195,7 @@ export function FrontierChart() {
       if (!entry?.isIntersecting) return;
       setEntered(true);
       observer.disconnect();
-    }, { threshold: 0.28 });
+    }, { rootMargin: "-33% 0px -33% 0px", threshold: 0.01 });
     observer.observe(node);
     return () => observer.disconnect();
   }, []);

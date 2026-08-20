@@ -1,20 +1,20 @@
 import { benchmark, formatChf, headlineFigures } from "../data/benchmark";
-import { NutrientChart, SpendChart, WasteChart } from "./Charts";
+import { NutrientChart, SpendChart } from "./Charts";
 
 const figures = headlineFigures();
 
 export function ResultsPanel() {
   return (
     <div className="hp-results-panel hp-results-panel-core">
-      <div className="section-heading hp-results-heading">
-        <p className="eyebrow">The system goal</p>
+      <div className="section-heading hp-results-heading" data-reveal-item="heading">
+        <p className="eyebrow">Results</p>
         <h2 id="results-title">Lower food cost and waste while meeting nutrition needs.</h2>
         <p>
           One fixed pilot scenario follows a {benchmark.scenario.bodyWeightKg} kg adult at {benchmark.scenario.energyKcal.toLocaleString("en-GB")} kcal per day across {benchmark.scenario.weeks} pantry-linked weeks, using {benchmark.scenario.pricePulls.length} dated local grocery price pulls.
         </p>
       </div>
 
-      <div className="hp-results-overview" aria-label="Three headline results">
+      <div data-reveal-item="overview" className="hp-results-overview" aria-label="Three headline results">
         <article>
           <p className="eyebrow">Checkout cost</p>
           <p className="hp-results-overview-value">{formatChf(benchmark.cost.staplePerDay)}</p>
@@ -38,15 +38,12 @@ export function ResultsPanel() {
         </article>
       </div>
 
-      <div className="hp-results-plots">
+      <div data-reveal-item="plots" className="hp-results-plots">
         <SpendChart />
-        <div className="hp-results-plots-secondary">
-          <NutrientChart />
-          <WasteChart />
-        </div>
+        <NutrientChart />
       </div>
 
-      <details className="hp-results-details">
+      <details data-reveal-item="details" className="hp-results-details">
         <summary>Sources and limitations</summary>
         <div className="hp-results-notes hp-results-final-sections">
           <section aria-labelledby="sources-heading">

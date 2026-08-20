@@ -7,8 +7,10 @@ import "@fontsource/archivo/700.css";
 import "@fontsource/archivo/800.css";
 import "./styles.css";
 import { App } from "./App";
+import { useVisualViewport } from "./useVisualViewport";
 
 function Root() {
+  useVisualViewport();
   const [, setTick] = useState(0);
   useEffect(() => {
     const onPop = () => setTick((n) => n + 1);
