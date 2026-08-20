@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { smoothScrollTo } from "./smoothScroll";
 
 /**
  * Native sticky scrollytelling.
@@ -84,10 +85,7 @@ export function useScrollytelling<T extends HTMLElement>(
     apply(index);
     lockedUntil.current = performance.now() + 480;
     if (!pinned || travel <= 0) return;
-    window.scrollTo({
-      top: el.offsetTop + (travel * (index + 0.5)) / stepCount,
-      behavior: "auto",
-    });
+    smoothScrollTo(el.offsetTop + (travel * (index + 0.5)) / stepCount, "smooth");
   };
 
   return { ref, active, goToStep };
