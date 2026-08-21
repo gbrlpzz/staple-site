@@ -19,21 +19,21 @@ export function ResultsPanel() {
           <p className="eyebrow">Checkout cost</p>
           <p className="hp-results-overview-value">{formatChf(benchmark.cost.staplePerDay)}</p>
           <p className="hp-results-overview-unit">per day</p>
-          <p className="hp-results-overview-delta"><strong>{figures.costDelta}</strong> vs the <a href={benchmark.sourceLinks.habe.url}>Swiss single-adult average</a> ({formatChf(benchmark.cost.habePerDay)})</p>
+          <p className="hp-results-overview-delta"><strong>{figures.costDelta}</strong> vs the <a href={benchmark.sourceLinks.habe.url} target="_blank" rel="noopener noreferrer">Swiss single-adult average</a> ({formatChf(benchmark.cost.habePerDay)})</p>
           <p>Modeled food-at-home spend. After the first pantry fill: {formatChf(benchmark.cost.staplePerDayAfterFill)} per day.</p>
         </article>
         <article>
           <p className="eyebrow">Nutrition</p>
           <p className="hp-results-overview-value">{benchmark.adequacy.stapleMar10}%</p>
           <p className="hp-results-overview-unit">MAR-10 adequacy</p>
-          <p className="hp-results-overview-delta"><strong>{figures.mar10Delta}</strong> vs the <a href={benchmark.sourceLinks.menuCh.url}>Swiss survey mean</a> ({benchmark.adequacy.menuChMar10}%)</p>
+          <p className="hp-results-overview-delta"><strong>{figures.mar10Delta}</strong> vs the <a href={benchmark.sourceLinks.menuCh.url} target="_blank" rel="noopener noreferrer">Swiss survey mean</a> ({benchmark.adequacy.menuChMar10}%)</p>
           <p>The index averages ten capped nutrient ratios.</p>
         </article>
         <article>
           <p className="eyebrow">Modeled waste</p>
           <p className="hp-results-overview-value">{benchmark.waste.stapleGPerWeek} g</p>
           <p className="hp-results-overview-unit">per week</p>
-          <p className="hp-results-overview-delta"><strong>{figures.wasteDelta}</strong> vs the <a href={benchmark.sourceLinks.foen.url}>household estimate</a> ({benchmark.waste.foenGPerWeek.toLocaleString("en-GB")} g)</p>
+          <p className="hp-results-overview-delta"><strong>{figures.wasteDelta}</strong> vs the <a href={benchmark.sourceLinks.foen.url} target="_blank" rel="noopener noreferrer">household estimate</a> ({benchmark.waste.foenGPerWeek.toLocaleString("en-GB")} g)</p>
           <p>The household estimate covers a broader discard basket.</p>
         </article>
       </div>
@@ -53,10 +53,10 @@ export function ResultsPanel() {
             <p>{benchmark.sources.system}</p>
             <p>{benchmark.sources.nutrients}</p>
             <ul className="hp-cite hp-cite-inline hp-source-links">
-              <li><a href={benchmark.sourceLinks.habe.url}>{benchmark.sourceLinks.habe.label}</a><span>{benchmark.sources.habe}</span></li>
-              <li><a href={benchmark.sourceLinks.menuCh.url}>{benchmark.sourceLinks.menuCh.label}</a><span>{benchmark.sources.menuCh}</span></li>
-              <li><a href={benchmark.sourceLinks.foen.url}>{benchmark.sourceLinks.foen.label}</a><span>{benchmark.sources.foen}</span></li>
-              <li><a href={benchmark.sourceLinks.swissFcd.url}>{benchmark.sourceLinks.swissFcd.label}</a><span>{benchmark.scenario.references}.</span></li>
+              <li><a href={benchmark.sourceLinks.habe.url} target="_blank" rel="noopener noreferrer">{benchmark.sourceLinks.habe.label}</a><span>{benchmark.sources.habe}</span></li>
+              <li><a href={benchmark.sourceLinks.menuCh.url} target="_blank" rel="noopener noreferrer">{benchmark.sourceLinks.menuCh.label}</a><span>{benchmark.sources.menuCh}</span></li>
+              <li><a href={benchmark.sourceLinks.foen.url} target="_blank" rel="noopener noreferrer">{benchmark.sourceLinks.foen.label}</a><span>{benchmark.sources.foen}</span></li>
+              <li><a href={benchmark.sourceLinks.swissFcd.url} target="_blank" rel="noopener noreferrer">{benchmark.sourceLinks.swissFcd.label}</a><span>{benchmark.scenario.references}.</span></li>
             </ul>
           </section>
           <section aria-labelledby="limitations-heading">

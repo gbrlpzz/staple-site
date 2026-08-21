@@ -38,7 +38,7 @@ export function ResearchPanel() {
             {DATA_INPUTS.map((input) => {
               const content = <><strong>{input.name}</strong><span>{input.detail}</span></>;
               return input.href
-                ? <li key={input.name}><a href={input.href}>{content}</a></li>
+                ? <li key={input.name}><a href={input.href} target="_blank" rel="noopener noreferrer">{content}</a></li>
                 : <li key={input.name}>{content}</li>;
             })}
           </ul>

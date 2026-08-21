@@ -53,7 +53,7 @@ function Hero() {
             <span className="hp-hero-clause">{HERO.descriptor}</span>
           </h1>
           <p className="hp-hero-lede">{HERO.sentence}</p>
-          <a className="button button-primary hp-hero-cta" href={INQUIRE_HREF}>
+          <a className="button button-primary hp-hero-cta" href={INQUIRE_HREF} target="_blank" rel="noopener noreferrer">
             Inquire
           </a>
         </div>
@@ -117,28 +117,28 @@ export function Landing() {
       <footer className="hp-footer">
         <div className="hp-footer-inner">
           <div className="hp-footer-brand">
-            <a className="hp-brand" href="#top" aria-label="Staple home">
+            <a className="hp-brand" href="#top" aria-label="Staple home" target="_blank" rel="noopener noreferrer">
               <span className="collect-wordmark">staple</span>
             </a>
           </div>
           <nav className="hp-footer-links" aria-label="Footer">
             <div>
               <span className="hp-footer-heading">Product</span>
-              <a href="#product">Weekly loop</a>
+              <a href="#product" target="_blank" rel="noopener noreferrer">Weekly loop</a>
             </div>
             <div>
               <span className="hp-footer-heading">Algorithm</span>
-              <a href="#research">Algorithm</a>
-              <a href="#results">Results</a>
+              <a href="#research" target="_blank" rel="noopener noreferrer">Algorithm</a>
+              <a href="#results" target="_blank" rel="noopener noreferrer">Results</a>
             </div>
             <div>
               <span className="hp-footer-heading">Contact</span>
-              <a href={INQUIRE_HREF}>Inquire</a>
-              <a href="https://gabrielepizzi.com">gabrielepizzi.com</a>
+              <a href={INQUIRE_HREF} target="_blank" rel="noopener noreferrer">Inquire</a>
+              <a href="https://gabrielepizzi.com" target="_blank" rel="noopener noreferrer">gabrielepizzi.com</a>
             </div>
           </nav>
           <p className="hp-footer-legal">
-            <a href="https://gabrielepizzi.com">© Gabriele Pizzi 2026</a>
+            <a href="https://gabrielepizzi.com" target="_blank" rel="noopener noreferrer">© Gabriele Pizzi 2026</a>
           </p>
         </div>
       </footer>

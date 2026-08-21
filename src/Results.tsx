@@ -34,7 +34,7 @@ export function Results() {
       </article>
       <footer className="hp-footer">
         <div className="hp-footer-legal">
-          <a href="https://gabrielepizzi.com">© Gabriele Pizzi 2026</a>
+          <a href="https://gabrielepizzi.com" target="_blank" rel="noopener noreferrer">© Gabriele Pizzi 2026</a>
         </div>
       </footer>
     </>

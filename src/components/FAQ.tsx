@@ -32,7 +32,7 @@ export function FAQ() {
       <div className="section-heading hp-faq-intro" data-reveal-item="intro">
         <p className="eyebrow">Questions</p>
         <h2 id="faq-title">Any questions?</h2>
-        <p><a href={`mailto:${CONTACT_EMAIL}`}>Get in touch any time.</a></p>
+        <p><a href={`mailto:${CONTACT_EMAIL}`} target="_blank" rel="noopener noreferrer">Get in touch any time.</a></p>
       </div>
       <div className="hp-faq-list" data-reveal-item="list">
         {QUESTIONS.map((item, index) => {

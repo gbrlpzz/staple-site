@@ -3,14 +3,8 @@ import { Landing } from "./Landing";
 import { Results } from "./Results";
 
 export function Link({ href, children }: { href: string; children: ReactNode }) {
-  const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (href.startsWith("http") || href.startsWith("mailto:")) return;
-    event.preventDefault();
-    window.history.pushState({}, "", href);
-    window.dispatchEvent(new PopStateEvent("popstate"));
-  };
   return (
-    <a href={href} onClick={onClick}>
+    <a href={href} target="_blank" rel="noopener noreferrer">
       {children}
     </a>
   );

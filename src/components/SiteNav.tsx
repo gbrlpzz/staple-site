@@ -58,7 +58,7 @@ export function SiteNav({
   return (
     <header className="hp-topbar">
       <div className="hp-topbar-inner">
-        <a className="hp-brand" href={basePath || "#top"} aria-label="Staple home">
+        <a className="hp-brand" href={basePath || "#top"} aria-label="Staple home" target="_blank" rel="noopener noreferrer">
           <span className="collect-wordmark">staple</span>
         </a>
         <nav ref={navRef} className="hp-nav" aria-label="Sections">
@@ -73,7 +73,7 @@ export function SiteNav({
               className={`hp-nav-link ${activeSection === link.id ? "active" : ""}`}
               href={sectionHref(link.id, basePath)}
               aria-current={activeSection === link.id ? "location" : undefined}
-            >
+             target="_blank" rel="noopener noreferrer">
               {link.label}
             </a>
           ))}
@@ -89,7 +89,7 @@ export function SiteNav({
           >
             <Icon name={menuOpen ? "x" : "menu"} size={20} />
           </button>
-          <a className="button button-primary button-small" href={INQUIRE_HREF}>
+          <a className="button button-primary button-small" href={INQUIRE_HREF} target="_blank" rel="noopener noreferrer">
             Inquire
           </a>
         </div>
@@ -183,13 +183,13 @@ export function MobileMenu({
                 href={sectionHref(link.id, basePath)}
                 aria-current={active ? "location" : undefined}
                 onClick={onClose}
-              >
+               target="_blank" rel="noopener noreferrer">
                 <span>{link.label}</span>
                 <Icon name={active ? "check" : "chevron-right"} size={15} />
               </a>
             );
           })}
-          <a className="hp-menu-link hp-menu-cta" href={INQUIRE_HREF} onClick={onClose}>
+          <a className="hp-menu-link hp-menu-cta" href={INQUIRE_HREF} onClick={onClose} target="_blank" rel="noopener noreferrer">
             <span>Inquire</span>
             <Icon name="arrow-right" size={15} />
           </a>
