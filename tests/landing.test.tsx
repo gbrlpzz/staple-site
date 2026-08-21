@@ -37,7 +37,7 @@ describe("landing surface", () => {
     const { container } = render(<Landing />);
     expect(screen.getByRole("heading", { name: /one plan each week, recalculated around you and your market/i })).toBeInTheDocument();
     expect(screen.getByText("Local grocery prices")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /pareto frontier/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /best week at every budget/i })).toBeInTheDocument();
     expect(screen.getByText("Inputs")).toBeInTheDocument();
     expect(screen.getByText("Nutrition coverage (%)")).toBeInTheDocument();
     expect(screen.getByText("Weekly checkout cost (CHF)")).toBeInTheDocument();

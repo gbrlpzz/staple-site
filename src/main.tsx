@@ -1,5 +1,6 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
 import "@fontsource/archivo/400.css";
 import "@fontsource/archivo/500.css";
 import "@fontsource/archivo/600.css";
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <LenisRoot>
       <Root />
+      <Analytics />
     </LenisRoot>
   </StrictMode>
 );

@@ -2509,11 +2509,20 @@ img { max-width: 100%; display: block; }
   font-size: 0.875rem;
 }
 .hp-results-overview-delta {
-  margin: 0 0 10px !important;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 6px;
+  margin: 0 0 12px !important;
   color: var(--text) !important;
-  font-size: 1rem !important;
+  font-size: 1.0625rem !important;
 }
-.hp-results-overview-delta strong { font-weight: 750; }
+.hp-results-overview-delta strong {
+  font-weight: 750;
+  font-size: 1.4375em;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
 .hp-results-overview article > p:not(.eyebrow):not(.hp-results-overview-value):not(.hp-results-overview-unit) {
   margin: 7px 0 0;
   color: var(--secondary);
@@ -3351,7 +3360,7 @@ a.hp-input-card:focus-visible {
 }
 
 
-/* Minimal optimizer: data cards left, one animated Pareto graph right. */
+/* Minimal optimizer: data cards left, one animated trade-off graph right. */
 .hp-visually-hidden {
   position: absolute !important;
   width: 1px !important;
@@ -4964,7 +4973,7 @@ a.hp-input-data-row:focus-visible {
 .hp-hero-devices {
   top: 50%;
   right: auto;
-  left: calc(50% + clamp(0px, 2vw, 28px));
+  left: calc(50% - clamp(12px, 3.5vw, 48px));
   width: min(54vw, 640px);
   transform: translateY(-50%);
   opacity: 0.92;

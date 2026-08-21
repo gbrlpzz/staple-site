@@ -4,23 +4,23 @@ import { CONTACT_EMAIL } from "../data/benchmark";
 const QUESTIONS = [
   {
     question: "What is Staple?",
-    answer: "Staple is a personal nutrition system. It plans a complete week of meals and shopping around your nutrition needs, budget, pantry and current grocery prices.",
+    answer: "Staple is a personal nutrition system. Every week, it builds a complete meal and shopping plan around your nutrition needs, your budget, your pantry and current store prices.",
   },
   {
     question: "How does Staple choose a week?",
-    answer: "The optimizer samples complete seven-day menus, removes plans that miss a hard nutrition or cooking floor, and surfaces a small set of feasible cost–quality choices.",
+    answer: "It searches complete seven-day menus, discards any plan that misses a firm nutrition or cooking floor, and offers a concise set of realistic choices across budget and quality.",
   },
   {
-    question: "Does the system account for what I already have?",
-    answer: "Yes. Pantry state carries forward between weeks. Products already available are subtracted from the next shop, while purchased and eaten food updates the inventory.",
+    question: "Does Staple account for what I already have?",
+    answer: "Yes. Your pantry carries over from week to week. Items you already own reduce the next shop, while purchases and meals keep the inventory up to date.",
   },
   {
-    question: "Are the results a clinical or purchasing trial?",
-    answer: "No. The public numbers are a preliminary deterministic replay for one fixed scenario. They are point estimates, not causal effects or health advice.",
+    question: "Are these results from a clinical or purchasing trial?",
+    answer: "No. The published figures come from an early, fully reproducible replay of one fixed scenario. They are point estimates, not causal effects and not health advice.",
   },
   {
-    question: "How can I ask about Staple?",
-    answer: "For questions about the optimizer, retail integration, research, licensing or partnerships, send an inquiry.",
+    question: "How can I get in touch?",
+    answer: "For questions about the planner, retail integration, research, licensing or partnerships, please send an email.",
   },
 ] as const;
 
@@ -32,7 +32,7 @@ export function FAQ() {
       <div className="section-heading hp-faq-intro" data-reveal-item="intro">
         <p className="eyebrow">Questions</p>
         <h2 id="faq-title">Any questions?</h2>
-        <p><a href={`mailto:${CONTACT_EMAIL}`}>Reach out to inquire.</a></p>
+        <p><a href={`mailto:${CONTACT_EMAIL}`}>Get in touch any time.</a></p>
       </div>
       <div className="hp-faq-list" data-reveal-item="list">
         {QUESTIONS.map((item, index) => {

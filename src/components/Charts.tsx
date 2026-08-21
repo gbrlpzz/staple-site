@@ -167,7 +167,7 @@ export function FrontierChart() {
   const frontier = benchmark.choiceExample.frontier;
   const points = [...frontier.points].sort((a, b) => a.costChf - b.costChf);
   const selected = points.filter((point) => point.selectedLabel);
-  const pareto = points.filter((point) => !points.some((other) =>
+  const boundary = points.filter((point) => !points.some((other) =>
     other !== point &&
     other.costChf <= point.costChf &&
     other.coveragePercent >= point.coveragePercent &&
@@ -201,8 +201,8 @@ export function FrontierChart() {
   }, []);
 
   return (
-    <figure ref={figureRef} className={`plot hp-native-chart hp-frontier-plot ${entered ? "is-entered" : "is-awaiting"}`} aria-label={`Pareto frontier with ${points.length} distinct weekly plans. Plans shown in the app: ${selected.map((plan) => `${plan.selectedLabel}: ${formatChf(plan.costChf)}, ${plan.coveragePercent}% coverage`).join("; ")}.`}>
-      <ChartHeading title="Pareto frontier" unit="Complete weeks: checkout cost × nutrition coverage" />
+    <figure ref={figureRef} className={`plot hp-native-chart hp-frontier-plot ${entered ? "is-entered" : "is-awaiting"}`} aria-label={`Chart of ${points.length} distinct weekly plans by checkout cost and nutrition coverage. Plans shown in the app: ${selected.map((plan) => `${plan.selectedLabel}: ${formatChf(plan.costChf)}, ${plan.coveragePercent}% coverage`).join("; ")}.`}>
+      <ChartHeading title="Best week at every budget" unit="Complete weeks: checkout cost × nutrition coverage" />
       <div className="hp-frontier-legend" aria-hidden="true">
         <span><i className="hp-frontier-key hp-frontier-key-other" />Week that fits</span>
         <span><i className="hp-frontier-key hp-frontier-key-line" />Best cost–nutrition boundary</span>
@@ -220,7 +220,7 @@ export function FrontierChart() {
           <svg className="hp-frontier-path" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polyline
               pathLength="1"
-              points={pareto.map((point) => `${x(point.costChf)},${y(point.coveragePercent)}`).join(" ")}
+              points={boundary.map((point) => `${x(point.costChf)},${y(point.coveragePercent)}`).join(" ")}
             />
           </svg>
           {points.map((point, index) => {

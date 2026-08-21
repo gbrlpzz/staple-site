@@ -233,7 +233,7 @@
     "foen": "FOEN household edible discard, ~90 kg/person/year (~1,731 g/week). Broader than a planned grocery basket.",
     "replay": "docs/verification/results/maintenance_8w/",
     "system": "System documentation: Apple Health via Shortcut for energy and body weight; Swiss Food Composition Database V7.1 for nutrient values; current grocery prices and dated pantry events for the weekly plan.",
-    "optimizer": "Optimizer documentation: seeded whole-week search; live local grocery price and promotion overlay; whole-package till cost net of pantry; hard nutrition and cooking floors; Pareto Budget, Balanced and Quality plans; learned weights select a suggestion without changing the frontier.",
+    "optimizer": "Optimizer documentation: seeded whole-week search; live local grocery price and promotion overlay; whole-package till cost net of pantry; hard nutrition and cooking floors; Budget, Balanced and Quality plans drawn from the options no other plan beats on both cost and nutrition; learned weights pick between them.",
     "protocol": "Frozen confirmatory protocol: primary outcomes, matched computational baselines, mechanism ablations, predefined scenarios, stress tests and holdout evaluation. The August 2026 replay remains pilot development data.",
     "nutrients": "Ten MAR-10 components shown as raw percent of reference before the MAR-10 cap: protein, fiber, calcium, magnesium, iron, zinc, vitamins A, C and B12, and folate. Staple values are eight-week replay means. menuCH context is shown where the compiled survey mean is available; Vitamin A is not available in the frozen comparator."
   },
