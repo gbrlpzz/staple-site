@@ -2518,11 +2518,7 @@ img { max-width: 100%; display: block; }
   font-size: 1.0625rem !important;
 }
 .hp-results-overview-delta strong {
-  display: inline-block;
-  padding: 2px 7px 3px;
-  border-radius: 6px;
   color: #176b43 !important;
-  background: #e5f2ea;
   font-weight: 750;
   font-size: 1.4375em;
   letter-spacing: -0.02em;
