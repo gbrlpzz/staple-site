@@ -11,9 +11,8 @@
 }
 
 html {
-  /* No global smooth scrolling: an eased jump would glide through the pinned
-     scrollytelling band, freezing the viewport while steps flicker past.
-     Anchor navigation lands instantly instead. */
+  /* Lenis owns deliberate easing for anchors and step jumps. Keep CSS native
+     so the browser and the smooth-scroll controller never compete. */
   scrollbar-gutter: stable;
   height: auto;
   min-height: 100%;
