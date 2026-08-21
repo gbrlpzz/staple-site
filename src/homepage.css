@@ -156,7 +156,6 @@ body {
   padding-top: var(--sat);
   padding-left: var(--sal);
   padding-right: var(--sar);
-  border-bottom: 1px solid var(--separator-light);
   background: rgba(245, 245, 247, 0.85);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
@@ -396,8 +395,7 @@ body {
   outline-offset: -2px;
 }
 .hp-menu-cta {
-  margin-top: 6px;
-  border-top: 1px solid var(--separator-light);
+  margin-top: 18px;
   border-radius: 0 0 12px 12px;
   color: var(--text);
   font-weight: 650;
@@ -420,7 +418,6 @@ body {
   align-items: center;
   justify-content: flex-start;
   padding: clamp(76px, 12vh, 120px) 24px clamp(56px, 9vh, 88px);
-  border-bottom: 1px solid var(--separator-light);
   overflow: hidden;
   background: var(--paper);
 }
@@ -1358,8 +1355,6 @@ body {
 }
 .hp-section-paper {
   background: var(--paper);
-  border-top: 1px solid var(--separator-light);
-  border-bottom: 1px solid var(--separator-light);
 }
 .hp-section-inner {
   width: min(100%, 1080px);
@@ -1532,8 +1527,6 @@ section[id] {
 
 .hp-story {
   padding: 14px 0 12px;
-  border-top: 1px solid var(--separator-light);
-  border-bottom: 1px solid var(--separator-light);
 }
 .hp-story-kicker {
   display: block;
@@ -2871,9 +2864,8 @@ section[id] {
    Footer
    ========================================================================= */
 .hp-footer {
-  padding: 44px 24px 28px;
+  padding: 56px 24px 28px;
   background: var(--canvas);
-  border-top: 1px solid var(--separator-light);
 }
 .hp-footer-inner {
   width: min(100%, 1080px);
@@ -2918,9 +2910,7 @@ section[id] {
   color: var(--text);
 }
 .hp-footer-legal {
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid var(--separator-light);
+  margin-top: 48px;
   color: var(--tertiary);
   font-size: 0.6875rem;
 }

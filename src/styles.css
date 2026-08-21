@@ -137,9 +137,8 @@ img { max-width: 100%; display: block; }
 .plot h3 { margin: 0 0 12px; font-size: 0.875rem; letter-spacing: -0.02em; }
 .plot .note { font-size: 0.75rem; color: var(--tertiary); margin: 8px 0 0; line-height: 1.45; }
 .hp-cite-inline {
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid var(--separator-light);
+  margin-top: 28px;
+  padding-top: 0;
   list-style: none;
   padding-left: 0;
 }
@@ -401,7 +400,6 @@ img { max-width: 100%; display: block; }
 .hp-cite {
   margin: auto 0 0;
   padding: 16px 0 0;
-  border-top: 1px solid var(--separator-light);
   font-size: 0.75rem;
   color: var(--tertiary);
   line-height: 1.5;
@@ -1375,8 +1373,6 @@ img { max-width: 100%; display: block; }
 .hp-results-panel .plot { min-width: 0; }
 .hp-results-details {
   margin-top: 24px;
-  border-top: 1px solid var(--separator-light);
-  border-bottom: 1px solid var(--separator-light);
 }
 .hp-results-details summary {
   min-height: 52px;
@@ -1503,7 +1499,9 @@ img { max-width: 100%; display: block; }
   z-index: 0;
   top: 50%;
   right: auto;
-  left: calc(50% - clamp(8px, 2.2vw, 32px));
+  /* Seated left of the exact midline: the composition reads as one object
+     balanced against the headline, not two halves touching at center. */
+  left: calc(50% - clamp(56px, 7vw, 112px));
   width: min(46vw, 540px);
   transform: translateY(-50%);
   opacity: 0.92;
@@ -2077,9 +2075,7 @@ img { max-width: 100%; display: block; }
   font-size: 0.6875rem;
   font-weight: 650;
 }
-.hp-week-grid {
-  border-top: 1px solid var(--separator-light);
-}
+.hp-week-grid { /* weekday labels sit under the plot axis; no extra rule */ }
 .hp-week-grid span {
   position: absolute;
   top: 2px;
@@ -2457,7 +2453,6 @@ img { max-width: 100%; display: block; }
 .hp-results-plots .plot {
   padding: 24px 0 0;
   border: 0;
-  border-top: 1px solid var(--separator);
   border-radius: 0;
   background: transparent;
 }
@@ -2491,8 +2486,6 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 52px;
-  border-top: 1px solid var(--separator);
-  border-bottom: 1px solid var(--separator-light);
 }
 .hp-results-overview article {
   min-width: 0;
@@ -2500,7 +2493,6 @@ img { max-width: 100%; display: block; }
 }
 .hp-results-overview article + article {
   padding-left: 28px;
-  border-left: 1px solid var(--separator-light);
 }
 .hp-results-overview-value {
   margin: 16px 0 0;
@@ -2516,6 +2508,12 @@ img { max-width: 100%; display: block; }
   color: var(--secondary);
   font-size: 0.875rem;
 }
+.hp-results-overview-delta {
+  margin: 0 0 10px !important;
+  color: var(--text) !important;
+  font-size: 1rem !important;
+}
+.hp-results-overview-delta strong { font-weight: 750; }
 .hp-results-overview article > p:not(.eyebrow):not(.hp-results-overview-value):not(.hp-results-overview-unit) {
   margin: 7px 0 0;
   color: var(--secondary);
@@ -2549,7 +2547,6 @@ img { max-width: 100%; display: block; }
 }
 .hp-results-plots .hp-chart-summary > div + div {
   padding-left: 24px;
-  border-left: 1px solid var(--separator-light);
 }
 .hp-results-plots .hp-spend-plot {
   max-width: none;
@@ -2605,7 +2602,7 @@ img { max-width: 100%; display: block; }
     border-left: 0;
   }
   .hp-results-overview article + article {
-    border-top: 1px solid var(--separator-light);
+    padding-top: 20px;
   }
   .hp-results-overview-value { font-size: 3.25rem; }
   .hp-results-plots {
@@ -4008,7 +4005,6 @@ a.hp-input-data-row:focus-visible {
 .hp-hero-enhanced .hp-hero-cta:active { box-shadow: none; }
 
 /* ---------- Questions and inquiry ---------- */
-.hp-faq-section { border-top: 1px solid var(--separator-light); }
 .hp-faq-layout {
   display: grid;
   grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
@@ -4027,8 +4023,6 @@ a.hp-input-data-row:focus-visible {
   transition: opacity 0.18s ease;
 }
 .hp-faq-intro a:hover { opacity: 0.66; }
-.hp-faq-list { border-top: 1px solid var(--separator-light); }
-.hp-faq-item { border-bottom: 1px solid var(--separator-light); }
 .hp-faq-item h3 { margin: 0; }
 .hp-faq-item button {
   display: flex;
@@ -4477,7 +4471,6 @@ a.hp-input-data-row:focus-visible {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--separator-light);
 }
 .hp-input-list li {
   min-height: 56px;
@@ -4486,7 +4479,6 @@ a.hp-input-data-row:focus-visible {
   justify-content: space-between;
   gap: 16px;
   padding: 14px 0;
-  border-bottom: 1px solid var(--separator-light);
   color: var(--text);
   font-size: 0.8125rem;
 }

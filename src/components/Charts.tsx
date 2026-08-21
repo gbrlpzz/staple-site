@@ -118,7 +118,7 @@ export function NutrientChart({ showTitle = true }: ChartProps) {
             <div className="hp-nutrient-row" key={row.id}>
               <div className="hp-nutrient-row-label">
                 <strong>{row.name}</strong>
-                <span>Staple {row.staplePct}% · {menu == null ? "survey value unavailable" : `Swiss survey ${menu}%`}</span>
+                <span>Staple {row.staplePct}%. {menu == null ? "Survey value unavailable." : `Swiss survey ${menu}%.`}</span>
               </div>
               <div className="hp-nutrient-pair" aria-hidden="true" style={chartVars({ "target-position": targetPosition })}>
                 <div className="hp-nutrient-track">
@@ -239,7 +239,7 @@ export function FrontierChart() {
                 {label && (
                   <span className="hp-frontier-point-label">
                     <strong>{label}</strong>
-                    <small>{formatChf(point.costChf)} · {point.coveragePercent}%</small>
+                    <small>{formatChf(point.costChf)}<br />{point.coveragePercent}% coverage</small>
                   </span>
                 )}
               </div>

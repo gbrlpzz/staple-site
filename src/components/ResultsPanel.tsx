@@ -19,21 +19,24 @@ export function ResultsPanel() {
           <p className="eyebrow">Checkout cost</p>
           <p className="hp-results-overview-value">{formatChf(benchmark.cost.staplePerDay)}</p>
           <p className="hp-results-overview-unit">per day</p>
-          <p><a href={benchmark.sourceLinks.habe.url}>Swiss single-adult grocery spending</a>: {formatChf(benchmark.cost.habePerDay)} · <strong>{figures.costDelta}</strong></p>
+          <p className="hp-results-overview-delta"><strong>{figures.costDelta}</strong> vs Swiss spending</p>
+          <p><a href={benchmark.sourceLinks.habe.url}>Swiss single-adult grocery spending</a>: {formatChf(benchmark.cost.habePerDay)}</p>
           <p>After the first pantry fill: {formatChf(benchmark.cost.staplePerDayAfterFill)} per day.</p>
         </article>
         <article>
           <p className="eyebrow">Nutrition</p>
           <p className="hp-results-overview-value">{benchmark.adequacy.stapleMar10}%</p>
           <p className="hp-results-overview-unit">MAR-10 adequacy</p>
-          <p><a href={benchmark.sourceLinks.menuCh.url}>Swiss adult diet survey</a>: {benchmark.adequacy.menuChMar10}% · <strong>{figures.mar10Delta}</strong></p>
+          <p className="hp-results-overview-delta"><strong>{figures.mar10Delta}</strong> vs the survey</p>
+          <p><a href={benchmark.sourceLinks.menuCh.url}>Swiss adult diet survey</a>: {benchmark.adequacy.menuChMar10}%</p>
           <p>The index averages ten capped nutrient ratios.</p>
         </article>
         <article>
           <p className="eyebrow">Modeled waste</p>
           <p className="hp-results-overview-value">{benchmark.waste.stapleGPerWeek} g</p>
           <p className="hp-results-overview-unit">per week</p>
-          <p><a href={benchmark.sourceLinks.foen.url}>Swiss household discard estimate</a>: {benchmark.waste.foenGPerWeek.toLocaleString("en-GB")} g · <strong>{figures.wasteDelta}</strong></p>
+          <p className="hp-results-overview-delta"><strong>{figures.wasteDelta}</strong> vs the estimate</p>
+          <p><a href={benchmark.sourceLinks.foen.url}>Swiss household discard estimate</a>: {benchmark.waste.foenGPerWeek.toLocaleString("en-GB")} g</p>
           <p>The household estimate covers a broader discard basket.</p>
         </article>
       </div>
