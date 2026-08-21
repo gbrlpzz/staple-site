@@ -2,6 +2,13 @@
 
 :root {
   color-scheme: light;
+  /* Motion tokens. These were referenced across the stylesheet but never
+     defined, which silently invalidated every animation/transition shorthand
+     that used them (a shorthand with an unresolved var() is discarded at
+     computed-value time — the chart fill never ran because of this). */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1);
+  --ease-spring-snappy: cubic-bezier(0.3, 1.2, 0.45, 1);
   --sat: env(safe-area-inset-top, 0px);
   --sar: env(safe-area-inset-right, 0px);
   --sab: env(safe-area-inset-bottom, 0px);
@@ -186,10 +193,6 @@ img { max-width: 100%; display: block; }
 .disclaimer { font-size: 0.75rem; color: var(--tertiary); max-width: 40rem; margin-top: 24px; }
 
 .wordmark-dot { color: var(--tertiary); }
-
-#product .hp-scrolly {
-  height: calc(100vh + var(--hp-steps, 5) * 28vh);
-}
 
 .hp-hero-quiet {
   min-height: 0 !important;
@@ -1057,14 +1060,9 @@ img { max-width: 100%; display: block; }
 .hp-status-bar { font-size: 17px; }
 
 /* ---------- Native scroll focus ---------- */
-html {
-  scroll-snap-type: y proximity;
-}
-main > section[id] {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
-.hp-topbar { scroll-snap-align: none; }
+/* No scroll snapping anywhere: snap targets tug the viewport against the
+   pinned scrollytelling band and charts, so gestures never settle where the
+   reader's thumb stops. The sticky sections themselves provide the rests. */
 
 /* ---------- Hero scale: strong hierarchy without oversized type ---------- */
 .hp-hero-copy-panel {
@@ -4119,21 +4117,9 @@ a.hp-input-data-row:focus-visible {
 
 
 
-/* Restore the original product stop: one viewport of pinned space plus a
-   compact beat per step, then release into the next section. */
-#product .hp-scrolly {
-  height: calc(100vh + var(--hp-steps, 5) * 28vh);
-}
-@media (min-width: 961px) {
-  #product .hp-scrolly-panel {
-    position: sticky;
-    top: 0;
-    min-height: 100vh;
-  }
-}
-@media (max-width: 960px) {
-  #product .hp-scrolly { height: auto; }
-}
+/* The product stop lives with the shared scrollytelling rules in
+   homepage.css (.hp-scrolly): one viewport of pinned space plus a compact
+   beat per step, then release into the next section. */
 
 
 /* Final simplification pass: the product is the visual object, not a card. */
@@ -4156,20 +4142,24 @@ a.hp-input-data-row:focus-visible {
   transform: none;
   transition: opacity 0.7s var(--ease-out-quint), transform 0.7s var(--ease-out-quint);
 }
-.hp-native-chart.is-entered .hp-week-bar,
+.hp-native-chart.is-entered .hp-week-bar {
+  animation: hp-chart-fill-y 1.1s var(--ease-out-quint) both;
+}
 .hp-native-chart.is-entered .hp-nutrient-bar,
 .hp-native-chart.is-entered .hp-waste-track > span {
-  animation: hp-chart-fill 0.8s var(--ease-out-quint) both;
+  animation: hp-chart-fill-x 1.6s cubic-bezier(0.42, 0.55, 0.22, 1) both;
 }
-.hp-native-chart.is-entered .hp-week-column:nth-child(2) .hp-week-bar,
-.hp-native-chart.is-entered .hp-nutrient-row:nth-child(2) .hp-nutrient-bar { animation-delay: 70ms; }
-.hp-native-chart.is-entered .hp-week-column:nth-child(3) .hp-week-bar,
-.hp-native-chart.is-entered .hp-nutrient-row:nth-child(3) .hp-nutrient-bar { animation-delay: 140ms; }
-.hp-native-chart.is-entered .hp-week-column:nth-child(4) .hp-week-bar,
-.hp-native-chart.is-entered .hp-nutrient-row:nth-child(4) .hp-nutrient-bar { animation-delay: 210ms; }
-@keyframes hp-chart-fill {
-  from { opacity: 0.15; transform: scaleY(0.12); transform-origin: bottom; }
-  to { opacity: 1; transform: scaleY(1); transform-origin: bottom; }
+/* Columns rise from their baseline; horizontal tubes fill left to right
+   inside the gray track, like liquid loading a thermometer. Every mark in a
+   chart shares one start time and one curve, so a chart reads as a single
+   load — no per-row stagger. */
+@keyframes hp-chart-fill-y {
+  from { opacity: 0.15; transform: scaleY(0.12); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+@keyframes hp-chart-fill-x {
+  from { opacity: 0.15; transform: scaleX(0); }
+  to { opacity: 1; transform: scaleX(1); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hp-native-chart.is-awaiting,
@@ -4521,12 +4511,6 @@ a.hp-input-data-row:focus-visible {
 }
 
 
-/* Each graph enters as a small sequence: frame, marks, then labels. */
-.hp-native-chart.is-entered .hp-week-bar,
-.hp-native-chart.is-entered .hp-nutrient-bar,
-.hp-native-chart.is-entered .hp-waste-track > span {
-  animation-delay: var(--chart-delay, 0ms);
-}
 .hp-frontier-plot.is-entered .hp-frontier-path polyline {
   animation-duration: 820ms;
   animation-delay: 360ms;
@@ -4546,12 +4530,6 @@ a.hp-input-data-row:focus-visible {
 }
 
 
-/* Keep evidence animation long enough to read while it enters. */
-.hp-native-chart.is-entered .hp-week-bar,
-.hp-native-chart.is-entered .hp-nutrient-bar,
-.hp-native-chart.is-entered .hp-waste-track > span {
-  animation-duration: 1.1s;
-}
 .hp-frontier-plot.is-entered .hp-frontier-path polyline {
   animation-duration: 1.2s;
   animation-delay: 480ms;
@@ -4571,17 +4549,23 @@ a.hp-input-data-row:focus-visible {
   transform: none;
   transition: none;
 }
-.hp-native-chart.is-awaiting .hp-week-bar,
+.hp-native-chart.is-awaiting .hp-week-bar {
+  opacity: 0;
+  transform: scaleY(0.02);
+}
 .hp-native-chart.is-awaiting .hp-nutrient-bar,
 .hp-native-chart.is-awaiting .hp-waste-track > span {
   opacity: 0;
-  transform: scaleY(0.02);
-  transform-origin: bottom;
+  transform: scaleX(0);
+}
+/* Horizontal marks anchor their fill at the left edge of the track. */
+.hp-native-chart .hp-nutrient-bar,
+.hp-native-chart .hp-waste-track > span {
+  transform-origin: left;
 }
 .hp-native-chart.is-entered .hp-week-bar,
 .hp-native-chart.is-entered .hp-nutrient-bar,
 .hp-native-chart.is-entered .hp-waste-track > span {
-  transform-origin: bottom;
   will-change: transform, opacity;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -4618,33 +4602,10 @@ a.hp-input-data-row:focus-visible {
   .hp-admin-step-btn { transition: none; }
 }
 
-/* Give the bar charts the same slow, readable construction as the frontier. */
-.hp-native-chart.is-entered .hp-week-bar,
-.hp-native-chart.is-entered .hp-nutrient-bar,
-.hp-native-chart.is-entered .hp-waste-track > span {
-  animation-duration: 1.8s;
-}
-
-
-/* Progressive graph reveal: transition each data mark from its own starting
-   state. Do not use a keyframe delay here; the fade and growth must be visible. */
-.hp-native-chart.is-awaiting .hp-week-bar,
-.hp-native-chart.is-awaiting .hp-nutrient-bar,
-.hp-native-chart.is-awaiting .hp-waste-track > span {
-  opacity: 0;
-  transform: scaleY(0.02);
-  transform-origin: bottom;
-}
-.hp-native-chart.is-entered .hp-week-bar,
-.hp-native-chart.is-entered .hp-nutrient-bar,
-.hp-native-chart.is-entered .hp-waste-track > span {
-  opacity: 1;
-  transform: scaleY(1);
-  transform-origin: bottom;
-  animation: none !important;
-  transition: opacity 1.15s var(--ease-out-quint), transform 1.8s var(--ease-out-quint);
-  transition-delay: var(--chart-delay, 0ms);
-}
+/* One timeline per chart: every mark loads together from its own baseline,
+   so a chart reads as a single mercury fill instead of a row-by-row dance.
+   (A transition-based variant lived here; it fought the keyframes with
+   animation: none and staggered rows via --chart-delay.) */
 .hp-frontier-plot.is-awaiting .hp-frontier-dot {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.42);
@@ -4701,14 +4662,8 @@ a.hp-input-data-row:focus-visible {
 
 
 /* Final graph transition pass: keep every plotted point, then reveal each
-   mark with a long, smooth transition rather than a delayed keyframe. */
-.hp-native-chart.is-entered .hp-week-bar,
-.hp-native-chart.is-entered .hp-nutrient-bar,
-.hp-native-chart.is-entered .hp-waste-track > span {
-  animation: none !important;
-  transition-duration: 2.4s, 1.6s;
-  transition-timing-function: cubic-bezier(0.22, 0.68, 0.35, 1), cubic-bezier(0.22, 0.68, 0.35, 1);
-}
+   mark with a long, smooth transition rather than a delayed keyframe.
+   Bar marks are exempt — they run the single hp-chart-fill timeline. */
 .hp-frontier-plot.is-entered .hp-frontier-point.is-other .hp-frontier-dot {
   opacity: 0.72;
   transform: translate(-50%, -50%) scale(1);
@@ -4752,26 +4707,18 @@ a.hp-input-data-row:focus-visible {
 }
 
 
-/* Each graph is a deliberate reading stop. The page already provides the
-   vertical snap container; these targets center the plot before it begins. */
+/* Charts keep breathing room from the sticky topbar when jumped to by
+   anchor; no snap points — see "Native scroll focus" above. */
 .hp-native-chart,
 .hp-frontier-plot {
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
   scroll-margin-block: 12vh;
 }
 @media (max-width: 780px) {
   .hp-native-chart,
   .hp-frontier-plot {
-    scroll-snap-stop: normal;
     scroll-margin-block: 8vh;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hp-native-chart,
-  .hp-frontier-plot { scroll-snap-stop: normal; }
-}
-
 
 /* =========================================================================
    Responsive landing consolidation

@@ -11,7 +11,9 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* No global smooth scrolling: an eased jump would glide through the pinned
+     scrollytelling band, freezing the viewport while steps flicker past.
+     Anchor navigation lands instantly instead. */
   scrollbar-gutter: stable;
   height: auto;
   min-height: 100%;
@@ -1248,31 +1250,16 @@ body {
 /* Short screens: draw the phone smaller instead of overflowing the pinned
    panel. Proportions are never touched — the frame keeps real 375x812 iPhone
    metrics (identical app layout and container queries) and is only scaled
-   visually, down to where it may touch the bottom of the panel.
+   visually. The scale fits continuously: panel padding (88 + 24) plus a
+   breathing margin must hold the 830px frame at every desktop height, so a
+   pinned panel is never taller than the viewport. A length divided by a
+   length yields the unitless ratio clamp compares.
    Desktop only; the stacked layout below 960px keeps full size. */
-@media (min-width: 961px) and (max-height: 920px) {
+@media (min-width: 961px) {
   .hp-shell {
-    --hp-phone-scale: 0.64;
-  }
-}
-@media (min-width: 961px) and (max-height: 860px) {
-  .hp-shell {
-    --hp-phone-scale: 0.88;
-  }
-}
-@media (min-width: 961px) and (max-height: 790px) {
-  .hp-shell {
-    --hp-phone-scale: 0.8;
-  }
-}
-@media (min-width: 961px) and (max-height: 720px) {
-  .hp-shell {
-    --hp-phone-scale: 0.72;
-  }
-}
-@media (min-width: 961px) and (max-height: 640px) {
-  .hp-shell {
-    --hp-phone-scale: 0.64;
+    /* Length divided by length yields the unitless ratio scale() needs.
+       Reserves panel padding (88 + 24) plus breathing room. */
+    --hp-phone-scale: clamp(0.5, min((100svh - 152px) / 830px, 1), 1);
   }
 }
 
@@ -1328,12 +1315,15 @@ body {
 }
 .hp-scrolly {
   position: relative;
-  height: calc(100vh + var(--hp-steps, 3) * 58vh);
+  /* svh matches the visible viewport the scroll math uses (window.innerHeight),
+     so collapsing browser toolbars cannot shift where the panel pins.
+     One viewport of pinned space plus a compact beat per step. */
+  height: calc(100svh + var(--hp-steps, 5) * 28svh);
 }
 .hp-scrolly-panel {
   position: sticky;
   top: 0;
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   padding: 88px 24px 24px;

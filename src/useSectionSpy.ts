@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { onScrollFrame } from "./scrollFrame";
 
 /**
  * Tracks which page section is currently in view as the user scrolls.
@@ -29,13 +30,7 @@ export function useSectionSpy(sectionIds: string[], offset = 140): string {
       setActive(current);
     };
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
+    return onScrollFrame(handleScroll);
   }, [sectionIds.join(","), offset]);
 
   return active;

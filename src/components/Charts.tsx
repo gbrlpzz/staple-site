@@ -78,7 +78,7 @@ export function SpendChart({ showTitle = true }: ChartProps) {
                 <span className="hp-week-value" style={{ bottom: `calc(${(row.stapleChf / max) * 100}% + 5px)` }}>{row.stapleChf.toFixed(1)}</span>
                 <span
                   className={`hp-week-bar ${index === 0 ? "is-pantry-fill" : ""}`}
-                  style={chartVars({ "bar-height": `${(row.stapleChf / max) * 100}%`, "chart-delay": `${index * 160}ms` })}
+                  style={chartVars({ "bar-height": `${(row.stapleChf / max) * 100}%` })}
                 />
               </div>
             ))}
@@ -120,7 +120,7 @@ export function NutrientChart({ showTitle = true }: ChartProps) {
                 <strong>{row.name}</strong>
                 <span>Staple {row.staplePct}% · {menu == null ? "survey value unavailable" : `Swiss survey ${menu}%`}</span>
               </div>
-              <div className="hp-nutrient-pair" aria-hidden="true" style={chartVars({ "target-position": targetPosition, "chart-delay": `${rows.indexOf(row) * 120}ms` })}>
+              <div className="hp-nutrient-pair" aria-hidden="true" style={chartVars({ "target-position": targetPosition })}>
                 <div className="hp-nutrient-track">
                   <span className="hp-nutrient-target" />
                   <span className="hp-nutrient-bar hp-nutrient-bar-staple" style={{ width: `${(row.staplePct / scaleMax) * 100}%` }} />
@@ -154,7 +154,7 @@ export function WasteChart({ showTitle = true }: ChartProps) {
         {rows.map((row) => (
           <div className="hp-waste-row" key={row.label}>
             <div className="hp-waste-label"><strong>{row.label}</strong><b>{row.value.toLocaleString("en-GB")} g</b></div>
-            <div className="hp-waste-track" aria-hidden="true"><span className={row.className} style={{ width: `${(row.value / max) * 100}%`, "--chart-delay": `${rows.indexOf(row) * 240}ms` } as CSSProperties} /></div>
+            <div className="hp-waste-track" aria-hidden="true"><span className={row.className} style={{ width: `${(row.value / max) * 100}%` } as CSSProperties} /></div>
           </div>
         ))}
       </div>

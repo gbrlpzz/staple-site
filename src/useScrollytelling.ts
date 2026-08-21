@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { smoothScrollTo } from "./smoothScroll";
+import { onScrollFrame } from "./scrollFrame";
 
 /**
  * Native sticky scrollytelling.
@@ -62,13 +63,7 @@ export function useScrollytelling<T extends HTMLElement>(
       apply(Math.floor((scrolled / travel) * stepCount));
     };
 
-    compute();
-    window.addEventListener("scroll", compute, { passive: true });
-    window.addEventListener("resize", compute);
-    return () => {
-      window.removeEventListener("scroll", compute);
-      window.removeEventListener("resize", compute);
-    };
+    return onScrollFrame(compute);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stepCount]);
 
@@ -85,7 +80,12 @@ export function useScrollytelling<T extends HTMLElement>(
     apply(index);
     lockedUntil.current = performance.now() + 480;
     if (!pinned || travel <= 0) return;
-    smoothScrollTo(el.offsetTop + (travel * (index + 0.5)) / stepCount, "smooth");
+    // Document-absolute band position. offsetTop is relative to the nearest
+    // positioned ancestor (the section wrapper), not the page, so it cannot
+    // seed a scroll target. Lenis scrollTo and the native fallback both take
+    // the document-absolute coordinate.
+    const bandTop = el.getBoundingClientRect().top + window.scrollY;
+    smoothScrollTo(bandTop + (travel * (index + 0.5)) / stepCount, "smooth");
   };
 
   return { ref, active, goToStep };
