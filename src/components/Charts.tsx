@@ -12,12 +12,12 @@ const NUTRIENT_ORDER = [
   "vitaminCMg",
   "vitaminB12Mcg",
   "folateMcg",
-];
+] as const;
 
 type CssVars = CSSProperties & Record<"--target-position", string | number>;
 
 function chartVars(values: Record<string, string | number>): CssVars {
-  return Object.fromEntries(Object.entries(values).map(([key, value]) => ["--" + key, value])) as CssVars;
+  return Object.fromEntries(Object.entries(values).map(([key, value]) => ["--" + key, value])) as unknown as CssVars;
 }
 
 function useEntryReveal() {
