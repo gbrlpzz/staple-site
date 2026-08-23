@@ -5093,7 +5093,8 @@ a.hp-input-data-row:focus-visible {
 }
 
 
-/* Numeric frontier note clears the x-axis tick row. */
-.hp-optimizer-minimal .hp-frontier-plot > .note {
-  margin-top: 24px;
+
+/* Keep selected plot labels compact before the layout stacks. */
+@media (max-width: 780px) {
+  .hp-frontier-point-label small { display: none; }
 }
