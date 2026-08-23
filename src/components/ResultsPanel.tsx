@@ -11,7 +11,7 @@ export function ResultsPanel() {
         <p className="eyebrow">Selected outcomes</p>
         <h2 id="results-title">Lower food cost and waste while meeting nutrition needs.</h2>
         <p>
-          The public result is a selected set of outcome figures from an early deterministic replay. It shows the intended direction of the system without publishing the underlying benchmark or optimizer implementation.
+          The public result is a selected set of outcome figures from an early deterministic replay. It shows the intended direction of the system through cost, nourishment and waste.
         </p>
       </div>
 
