@@ -90,7 +90,7 @@ export function NutrientChart() {
           );
         })}
       </div>
-      <p className="note">The red line is 100%. MAR-10 caps each nutrient at 100% before averaging the ten ratios. These are selected public outcomes.</p>
+      <p className="note">MAR-10 values are capped at 100% before averaging.</p>
     </figure>
   );
 }
@@ -145,7 +145,7 @@ export function FrontierChart() {
       className={"plot hp-native-chart hp-frontier-plot " + (reveal.entered ? "is-entered" : "is-awaiting")}
       aria-label="Chart of complete weekly options by weekly checkout cost and nutrition coverage, with Budget, Balanced and Quality highlighted."
     >
-      <ChartHeading title="Three ways to balance the week." unit="Complete-week choices · checkout cost × nutrition coverage" />
+      <ChartHeading title="Three ways to balance a week." unit="Weekly choices · checkout cost × nutrition coverage" />
       <div className="hp-frontier-legend" aria-hidden="true">
         <span><i className="hp-frontier-key hp-frontier-key-other" />Possible week</span>
         <span><i className="hp-frontier-key hp-frontier-key-line" />Trade-off shape</span>
@@ -194,7 +194,6 @@ export function FrontierChart() {
         </div>
         <span className="hp-frontier-x-label">Weekly checkout cost (CHF)</span>
       </div>
-      <p className="note">Lower checkout and higher nutrition coverage pull in different directions; the selected options keep that choice legible.</p>
     </figure>
   );
 }
