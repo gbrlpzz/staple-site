@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { Landing } from "../src/Landing";
 import { Results } from "../src/Results";
 import { CAROUSEL_LABELS } from "../src/components/Carousel";
-import { HERO, NUTRITION_OUTCOME } from "../src/data/benchmark";
+import { HERO, NUTRITION_OUTCOME, PUBLIC_OUTCOMES } from "../src/data/benchmark";
 
 describe("landing surface", () => {
   it("shows the locked hero copy and Inquire", () => {
@@ -33,17 +33,17 @@ describe("landing surface", () => {
     expect(screen.getByRole("heading", { name: /plan, shop, store and cook in one system/i })).toBeInTheDocument();
   });
 
-  it("keeps public research high-level and preserves nutrition outcomes", () => {
+  it("keeps public research high-level while preserving the headline outcomes", () => {
     const { container } = render(<Landing />);
     expect(screen.getByRole("heading", { name: /one plan each week, recalculated around you and your market/i })).toBeInTheDocument();
     expect(screen.getByText(/combines your nutrition needs, budget, pantry, cooking limits and current grocery prices/i)).toBeInTheDocument();
+    expect(screen.getByText("Complete weekly choices")).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: /best week at every budget/i })).not.toBeInTheDocument();
     expect(screen.queryByText("Inputs")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /nutrition outcomes from an early deterministic replay/i })).not.toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /a complete week designed around everyday nutrition needs/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /lower food cost and waste while meeting nutrition needs/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /all ten MAR-10 nutrients/i })).toBeInTheDocument();
-    expect(screen.queryByText(/shop cost by week/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/modeled edible waste/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/modeled edible waste/i)).toBeInTheDocument();
     expect(screen.getByText(/selected point estimates/i)).toBeInTheDocument();
     const research = container.querySelector("#research");
     const results = container.querySelector("#results");
@@ -53,9 +53,11 @@ describe("landing surface", () => {
     expect(container.querySelector("#inquire")).toBeNull();
   });
 
-  it("prints only the selected nutrition outcome and rights notice", () => {
+  it("prints the selected public outcomes and rights notice", () => {
     render(<Landing />);
     expect(screen.getByText(NUTRITION_OUTCOME.stapleMar10 + "%")).toBeInTheDocument();
+    expect(screen.getByText(`CHF ${PUBLIC_OUTCOMES.cost.staplePerDayChf.toFixed(2)}`)).toBeInTheDocument();
+    expect(screen.getByText(`${PUBLIC_OUTCOMES.waste.staplePerWeekG.toLocaleString("en-GB")} g`)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Staple rights and licence" })).toHaveAttribute("href", expect.stringContaining("/LICENSE"));
     expect(screen.getByText(/© Gabriele Pizzi 2026/)).toBeInTheDocument();
   });
@@ -74,10 +76,11 @@ describe("landing surface", () => {
 });
 
 describe("results page", () => {
-  it("shows the high-level research paragraph and nutrition outcomes", () => {
+  it("shows the high-level research paragraph, headline outcomes and nutrition chart", () => {
     const { container } = render(<Results />);
     expect(screen.getByRole("heading", { name: /one plan each week, recalculated around you and your market/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /a complete week designed around everyday nutrition needs/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /lower food cost and waste while meeting nutrition needs/i })).toBeInTheDocument();
+    expect(screen.getByText(`CHF ${PUBLIC_OUTCOMES.cost.staplePerDayChf.toFixed(2)}`)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /all ten MAR-10 nutrients/i })).toBeInTheDocument();
     expect(screen.queryByText(/shop cost by week/i)).not.toBeInTheDocument();
     expect(container.textContent).not.toMatch(/ETH/);
