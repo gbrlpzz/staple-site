@@ -1,10 +1,10 @@
 import { FrontierChart } from "./Charts";
 
 const PLANNING_CONTEXT = [
-  { name: "Nutrition", detail: "weekly priorities" },
-  { name: "Pantry", detail: "what is already there" },
-  { name: "Market", detail: "what is practical now" },
-  { name: "Routine", detail: "time and cooking context" },
+  { name: "Nutrition", detail: "priorities" },
+  { name: "Pantry", detail: "on hand" },
+  { name: "Market", detail: "prices" },
+  { name: "Routine", detail: "time" },
 ] as const;
 
 export function ResearchPanel() {
@@ -14,7 +14,7 @@ export function ResearchPanel() {
         <p className="eyebrow">Algorithm</p>
         <h2 id="research-title">One plan each week, recalculated around you and your market.</h2>
         <p>
-          Staple brings together the context of your week and returns a small set of complete choices. Each option makes a different balance between cost, nourishment and variety visible before you shop.
+          Each week, Staple recalculates a small set of complete choices around your nutrition, pantry, market and routine.
         </p>
       </div>
 
@@ -30,8 +30,8 @@ export function ResearchPanel() {
             ))}
           </ul>
           <p className="hp-side-rule">
-            <strong>Read the shape</strong>
-            Lower cost, higher coverage and more variety lead to different ways through the week.
+            <strong>Read the trade-off</strong>
+            Lower checkout cost and higher nutrition coverage pull in different directions.
           </p>
         </div>
         <FrontierChart />
