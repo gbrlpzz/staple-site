@@ -90,7 +90,7 @@ export function NutrientChart() {
           );
         })}
       </div>
-      <p className="note">The red line is 100%. MAR-10 caps each nutrient at 100% before averaging the ten ratios. These are selected public outcomes, not the underlying optimizer data.</p>
+      <p className="note">The red line is 100%. MAR-10 caps each nutrient at 100% before averaging the ten ratios. These are selected public outcomes.</p>
     </figure>
   );
 }
