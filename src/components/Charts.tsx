@@ -105,7 +105,7 @@ function ChartHeading({ title, unit }: { title: string; unit: string }) {
   );
 }
 
-const PUBLIC_PLOT_POINTS = [
+type PublicPlotPoint = { x: number; y: number; selectedLabel?: "Budget" | "Balanced" | "Quality"; boundary?: boolean };\n\nconst PUBLIC_PLOT_POINTS: PublicPlotPoint[] = [
   { x: 8, y: 18 },
   { x: 16, y: 27 },
   { x: 24, y: 24 },
