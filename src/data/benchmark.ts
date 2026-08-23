@@ -22,12 +22,35 @@ export const NUTRITION_OUTCOME = {
       label: "Nutrient values — Swiss Food Composition Database V7.1",
       url: "https://naehrwertdaten.ch/en/",
     },
+    habe: {
+      label: "Swiss household grocery spending — Federal Statistical Office Household Budget Survey",
+      url: "https://www.bfs.admin.ch/bfs/en/home/statistics/economic-social-situation-population/surveys/hbs.html",
+    },
+    foen: {
+      label: "Swiss household food waste — Federal Office for the Environment",
+      url: "https://www.bafu.admin.ch/en/state-wastemanagement",
+    },
   },
   caveats: [
     "The public figures are preliminary point estimates from a deterministic replay, not a clinical or purchasing trial.",
-    "The public result is a selected nutrition outcome; the underlying benchmark, protocol and optimizer implementation remain private.",
-    "The Swiss survey is contextual, not a causal comparator.",
+    "Cost and waste values are modeled outputs, not observed household expenditure or discard.",
+    "Survey and waste comparators are contextual, not causal.",
+    "The underlying benchmark, protocol and optimizer implementation remain private.",
   ],
+} as const;
+
+export const PUBLIC_OUTCOMES = {
+  cost: {
+    staplePerDayChf: 8.68,
+    staplePerDayAfterPantryFillChf: 7.7,
+    comparatorPerDayChf: 13.65,
+    reductionPercent: 36,
+  },
+  waste: {
+    staplePerWeekG: 617,
+    comparatorPerWeekG: 1731,
+    reductionPercent: 64,
+  },
 } as const;
 
 export const HERO = {
