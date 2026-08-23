@@ -36,15 +36,16 @@ describe("landing surface", () => {
   it("keeps public research high-level while preserving the headline outcomes", () => {
     const { container } = render(<Landing />);
     expect(screen.getByRole("heading", { name: /one plan each week, recalculated around you and your market/i })).toBeInTheDocument();
-    expect(screen.getByText(/combines your nutrition needs, budget, pantry, cooking limits and current grocery prices/i)).toBeInTheDocument();
-    expect(screen.getByText("Three ways to balance the week.")).toBeInTheDocument();
+    expect(screen.getByText(/recalculates a small set of complete choices around your nutrition, pantry, market and routine/i)).toBeInTheDocument();
+    expect(screen.getByText("Three ways to balance a week.")).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: /best week at every budget/i })).not.toBeInTheDocument();
     expect(screen.queryByText("Inputs")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /nutrition outcomes from an early deterministic replay/i })).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /lower food cost and waste while meeting nutrition needs/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /all ten MAR-10 nutrients/i })).toBeInTheDocument();
-    expect(screen.getByText(/modeled edible waste/i)).toBeInTheDocument();
+    expect(screen.getByText(/modeled waste/i)).toBeInTheDocument();
     expect(screen.getByText(/selected point estimates/i)).toBeInTheDocument();
+    expect(container.textContent).not.toMatch(/underlying/i);
     const research = container.querySelector("#research");
     const results = container.querySelector("#results");
     const faq = container.querySelector("#faq");
