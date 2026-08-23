@@ -37,7 +37,7 @@ describe("landing surface", () => {
     const { container } = render(<Landing />);
     expect(screen.getByRole("heading", { name: /one plan each week, recalculated around you and your market/i })).toBeInTheDocument();
     expect(screen.getByText(/combines your nutrition needs, budget, pantry, cooking limits and current grocery prices/i)).toBeInTheDocument();
-    expect(screen.getByText("Complete weekly choices")).toBeInTheDocument();
+    expect(screen.getByText("Complete week")).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: /best week at every budget/i })).not.toBeInTheDocument();
     expect(screen.queryByText("Inputs")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /nutrition outcomes from an early deterministic replay/i })).not.toBeInTheDocument();
