@@ -105,48 +105,65 @@ function ChartHeading({ title, unit }: { title: string; unit: string }) {
   );
 }
 
-type PublicPlotPoint = { x: number; y: number; selectedLabel?: "Budget" | "Balanced" | "Quality"; boundary?: boolean };
+type PublicPlotPoint = {
+  cost: number;
+  coverage: number;
+  selectedLabel?: "Budget" | "Balanced" | "Quality";
+  boundary?: boolean;
+};
 
 const PUBLIC_PLOT_POINTS: PublicPlotPoint[] = [
-  { x: 8, y: 18 },
-  { x: 16, y: 27 },
-  { x: 24, y: 24 },
-  { x: 31, y: 38 },
-  { x: 39, y: 34 },
-  { x: 46, y: 50, selectedLabel: "Budget", boundary: true },
-  { x: 53, y: 47 },
-  { x: 60, y: 63, selectedLabel: "Balanced", boundary: true },
-  { x: 68, y: 58 },
-  { x: 76, y: 74, selectedLabel: "Quality", boundary: true },
-  { x: 84, y: 68 },
-  { x: 93, y: 82 },
+  { cost: 94, coverage: 99 },
+  { cost: 101, coverage: 103 },
+  { cost: 108, coverage: 105 },
+  { cost: 115, coverage: 109, selectedLabel: "Budget", boundary: true },
+  { cost: 122, coverage: 108 },
+  { cost: 130, coverage: 112 },
+  { cost: 138, coverage: 114, selectedLabel: "Balanced", boundary: true },
+  { cost: 146, coverage: 113 },
+  { cost: 154, coverage: 118 },
+  { cost: 164, coverage: 121 },
+  { cost: 174, coverage: 123 },
+  { cost: 184, coverage: 125, selectedLabel: "Quality", boundary: true },
 ] as const;
 
 export function FrontierChart() {
   const reveal = useEntryReveal();
   const boundary = PUBLIC_PLOT_POINTS.filter((point) => point.boundary);
-  const x = (value: number) => value;
-  const y = (value: number) => 100 - value;
+  const minX = 80;
+  const maxX = 200;
+  const minY = 95;
+  const maxY = 130;
+  const x = (value: number) => ((value - minX) / (maxX - minX)) * 100;
+  const y = (value: number) => (1 - (value - minY) / (maxY - minY)) * 100;
+  const xTicks = [100, 140, 180];
+  const yTicks = [100, 110, 120, 130];
 
   return (
     <figure
       ref={reveal.ref}
       className={"plot hp-native-chart hp-frontier-plot " + (reveal.entered ? "is-entered" : "is-awaiting")}
-      aria-label="Illustrative plot of possible weekly choices and three public plan options. The positions are conceptual and do not expose the underlying implementation."
+      aria-label="Chart of complete weekly options by weekly checkout cost and nutrition coverage, with Budget, Balanced and Quality highlighted."
     >
-      <ChartHeading title="A few practical weeks from a larger choice space." unit="Illustrative planning view" />
+      <ChartHeading title="Three ways to balance the week." unit="Complete-week choices · checkout cost × nutrition coverage" />
       <div className="hp-frontier-legend" aria-hidden="true">
         <span><i className="hp-frontier-key hp-frontier-key-other" />Possible week</span>
         <span><i className="hp-frontier-key hp-frontier-key-line" />Trade-off shape</span>
-        <span><i className="hp-frontier-key hp-frontier-key-selected" />Public choice</span>
+        <span><i className="hp-frontier-key hp-frontier-key-selected" />Staple choice</span>
       </div>
       <div className="hp-frontier-canvas" aria-hidden="true">
-        <span className="hp-frontier-y-label">Higher fit</span>
+        <span className="hp-frontier-y-label">Nutrition coverage (%)</span>
         <div className="hp-frontier-stage">
+          {yTicks.map((tick) => (
+            <span className="hp-frontier-y-tick" key={tick} style={{ top: y(tick) + "%" }}>{tick}</span>
+          ))}
+          {xTicks.map((tick) => (
+            <span className="hp-frontier-x-tick" key={tick} style={{ left: x(tick) + "%" }}>{tick}</span>
+          ))}
           <svg className="hp-frontier-path" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polyline
               pathLength="1000"
-              points={boundary.map((point) => x(point.x) + "," + y(point.y)).join(" ")}
+              points={boundary.map((point) => x(point.cost) + "," + y(point.coverage)).join(" ")}
             />
           </svg>
           {PUBLIC_PLOT_POINTS.map((point, index) => {
@@ -154,10 +171,10 @@ export function FrontierChart() {
             return (
               <div
                 className={"hp-frontier-point " + (label ? "is-selected hp-frontier-point-" + label.toLowerCase() : "is-other")}
-                key={point.x + "-" + point.y + "-" + index}
+                key={point.cost + "-" + point.coverage + "-" + index}
                 style={{
-                  left: x(point.x) + "%",
-                  top: y(point.y) + "%",
+                  left: x(point.cost) + "%",
+                  top: y(point.coverage) + "%",
                   ...chartVars({ "point-delay": index * 70 + "ms" }),
                 }}
               >
@@ -165,15 +182,19 @@ export function FrontierChart() {
                 {label && (
                   <span className="hp-frontier-point-label">
                     <strong>{label}</strong>
+                    <small>
+                      ~CHF {Math.round(point.cost / 5) * 5}<br />
+                      ~{Math.round(point.coverage)}% fit
+                    </small>
                   </span>
                 )}
               </div>
             );
           })}
         </div>
-        <span className="hp-frontier-x-label">More variety</span>
+        <span className="hp-frontier-x-label">Weekly checkout cost (CHF)</span>
       </div>
-      <p className="note">This public illustration shows the shape of the choice, not the data, scoring rules or search behind it.</p>
+      <p className="note">Lower checkout and higher nutrition coverage pull in different directions; the selected options keep that choice legible.</p>
     </figure>
   );
 }
