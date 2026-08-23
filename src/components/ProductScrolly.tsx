@@ -11,7 +11,7 @@ export const PRODUCT_STEPS = [
     id: "choose",
     label: "Choose",
     title: "Choose meals you want to eat.",
-    body: "Open the breakfasts, lunches, dinners and snacks inside each plan before you choose.",
+    body: "Open breakfasts, lunches, dinners and snacks before choosing.",
     src: "/screens/recipe.png",
     alt: "Staple menu of cooked mains, lunches and breakfasts",
   },
@@ -19,7 +19,7 @@ export const PRODUCT_STEPS = [
     id: "shop",
     label: "Shop",
     title: "Shop from one organized list.",
-    body: "See each product, pack count, amount needed and current price. Check items off as you shop.",
+    body: "See products, quantities and current prices. Check items off as you shop.",
     src: "/screens/shop.png",
     alt: "Staple shopping list with grocery products, quantities and prices",
   },
@@ -27,7 +27,7 @@ export const PRODUCT_STEPS = [
     id: "store",
     label: "Store",
     title: "Know what you already have.",
-    body: "The pantry tracks purchased and used food, so the next plan can use what remains and reduce waste.",
+    body: "The pantry tracks what remains so the next plan can reduce waste.",
     src: "/screens/pantry.png",
     alt: "Staple pantry with remaining oats, rice and olive oil",
   },
@@ -35,7 +35,7 @@ export const PRODUCT_STEPS = [
     id: "cook",
     label: "Cook",
     title: "See today’s full meal plan.",
-    body: "Breakfast, lunch, dinner and snacks stay in one quick reference. Mark meals eaten to update the pantry.",
+    body: "Keep the day's meals in one reference. Mark them eaten to update the pantry.",
     src: "/screens/today.png",
     alt: "Staple Today view with the day’s recipes to cook and eat",
   },
@@ -56,7 +56,6 @@ export function ProductCopy({
       <div className="section-heading">
         <p className="eyebrow">Product</p>
         <h2 id="product-title">Plan, shop, store and cook in one system.</h2>
-        <p>Compare three complete weeks, choose the meals, shop from one list, track pantry stock and cook from the daily plan.</p>
       </div>
       <div className="hp-admin-tab-selector" aria-label="Product screens">
         {PRODUCT_STEPS.map((item, index) => (
