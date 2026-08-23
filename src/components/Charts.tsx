@@ -14,7 +14,7 @@ const NUTRIENT_ORDER = [
   "folateMcg",
 ] as const;
 
-type CssVars = CSSProperties & Record<"--target-position", string | number>;
+type CssVars = CSSProperties & Record<`--${string}`, string | number>;
 
 function chartVars(values: Record<string, string | number>): CssVars {
   return Object.fromEntries(Object.entries(values).map(([key, value]) => ["--" + key, value])) as unknown as CssVars;
@@ -91,6 +91,87 @@ export function NutrientChart() {
         })}
       </div>
       <p className="note">The red line is 100%. MAR-10 caps each nutrient at 100% before averaging the ten ratios. These are selected public outcomes, not the underlying optimizer data.</p>
+    </figure>
+  );
+}
+
+
+function ChartHeading({ title, unit }: { title: string; unit: string }) {
+  return (
+    <figcaption className="hp-chart-heading">
+      <h3>{title}</h3>
+      <p>{unit}</p>
+    </figcaption>
+  );
+}
+
+const PUBLIC_PLOT_POINTS = [
+  { x: 8, y: 18 },
+  { x: 16, y: 27 },
+  { x: 24, y: 24 },
+  { x: 31, y: 38 },
+  { x: 39, y: 34 },
+  { x: 46, y: 50, selectedLabel: "Budget", boundary: true },
+  { x: 53, y: 47 },
+  { x: 60, y: 63, selectedLabel: "Balanced", boundary: true },
+  { x: 68, y: 58 },
+  { x: 76, y: 74, selectedLabel: "Quality", boundary: true },
+  { x: 84, y: 68 },
+  { x: 93, y: 82 },
+] as const;
+
+export function FrontierChart() {
+  const reveal = useEntryReveal();
+  const boundary = PUBLIC_PLOT_POINTS.filter((point) => point.boundary);
+  const x = (value: number) => value;
+  const y = (value: number) => 100 - value;
+
+  return (
+    <figure
+      ref={reveal.ref}
+      className={"plot hp-native-chart hp-frontier-plot " + (reveal.entered ? "is-entered" : "is-awaiting")}
+      aria-label="Illustrative plot of possible weekly choices and three public plan options. The positions are conceptual and do not expose the underlying implementation."
+    >
+      <ChartHeading title="A few practical weeks from a larger choice space." unit="Illustrative planning view" />
+      <div className="hp-frontier-legend" aria-hidden="true">
+        <span><i className="hp-frontier-key hp-frontier-key-other" />Possible week</span>
+        <span><i className="hp-frontier-key hp-frontier-key-line" />Trade-off shape</span>
+        <span><i className="hp-frontier-key hp-frontier-key-selected" />Public choice</span>
+      </div>
+      <div className="hp-frontier-canvas" aria-hidden="true">
+        <span className="hp-frontier-y-label">Higher fit</span>
+        <div className="hp-frontier-stage">
+          <svg className="hp-frontier-path" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polyline
+              pathLength="1000"
+              points={boundary.map((point) => x(point.x) + "," + y(point.y)).join(" ")}
+            />
+          </svg>
+          {PUBLIC_PLOT_POINTS.map((point, index) => {
+            const label = point.selectedLabel;
+            return (
+              <div
+                className={"hp-frontier-point " + (label ? "is-selected hp-frontier-point-" + label.toLowerCase() : "is-other")}
+                key={point.x + "-" + point.y + "-" + index}
+                style={{
+                  left: x(point.x) + "%",
+                  top: y(point.y) + "%",
+                  ...chartVars({ "point-delay": index * 70 + "ms" }),
+                }}
+              >
+                <span className="hp-frontier-dot" />
+                {label && (
+                  <span className="hp-frontier-point-label">
+                    <strong>{label}</strong>
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <span className="hp-frontier-x-label">More variety</span>
+      </div>
+      <p className="note">This public illustration shows the shape of the choice, not the data, scoring rules or search behind it.</p>
     </figure>
   );
 }
