@@ -14,7 +14,7 @@ export function ResearchPanel() {
         <p className="eyebrow">Algorithm</p>
         <h2 id="research-title">One plan each week, recalculated around you and your market.</h2>
         <p>
-          Staple brings together the context of your week and returns a small set of complete choices. This public plot illustrates the shape of that choice without publishing the underlying benchmark, scoring rules or implementation.
+          Staple brings together the context of your week and returns a small set of complete choices. Each option makes a different balance between cost, nourishment and variety visible before you shop.
         </p>
       </div>
 
@@ -30,8 +30,8 @@ export function ResearchPanel() {
             ))}
           </ul>
           <p className="hp-side-rule">
-            <strong>Public view</strong>
-            The positions are illustrative. The underlying search remains private.
+            <strong>Read the shape</strong>
+            Lower cost, higher coverage and more variety lead to different ways through the week.
           </p>
         </div>
         <FrontierChart />
