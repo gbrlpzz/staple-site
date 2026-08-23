@@ -1,0 +1,32 @@
+import { StrictMode, useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
+import "@fontsource/archivo/400.css";
+import "@fontsource/archivo/500.css";
+import "@fontsource/archivo/600.css";
+import "@fontsource/archivo/700.css";
+import "@fontsource/archivo/800.css";
+import "./styles.css";
+import { App } from "./App";
+import { LenisRoot } from "./LenisRoot";
+import { useVisualViewport } from "./useVisualViewport";
+
+function Root() {
+  useVisualViewport();
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const onPop = () => setTick((n) => n + 1);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+  return <App />;
+}
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <LenisRoot>
+      <Root />
+      <Analytics />
+    </LenisRoot>
+  </StrictMode>
+);
