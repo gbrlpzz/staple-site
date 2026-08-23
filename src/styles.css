@@ -5091,3 +5091,9 @@ a.hp-input-data-row:focus-visible {
 .hp-iphone-wrap {
   height: calc(866px * var(--hp-phone-scale, 1));
 }
+
+
+/* Numeric frontier note clears the x-axis tick row. */
+.hp-optimizer-minimal .hp-frontier-plot > .note {
+  margin-top: 24px;
+}
