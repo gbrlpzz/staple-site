@@ -5139,71 +5139,99 @@ a.hp-input-data-row:focus-visible {
   background: #176b43;
   box-shadow: 0 0 0 3px rgba(23, 107, 67, 0.12);
 }
-.hp-algorithm-inputs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-}
-.hp-algorithm-input {
-  display: grid;
-  align-content: center;
-  gap: 4px;
-  min-height: 64px;
-  padding: 12px 13px;
+.hp-choice-landscape {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 17px 14px;
   border: 1px solid var(--separator-light);
-  border-radius: 14px;
+  border-radius: 18px;
   background: var(--paper);
 }
-.hp-algorithm-input strong {
-  font-size: 0.8125rem;
-  letter-spacing: -0.01em;
+.hp-choice-landscape::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.48;
+  background-image:
+    linear-gradient(to right, rgba(60, 60, 67, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(60, 60, 67, 0.07) 1px, transparent 1px);
+  background-size: 25% 33.333%;
+  pointer-events: none;
 }
-.hp-algorithm-input span {
-  color: var(--secondary);
-  font-size: 0.6875rem;
+.hp-choice-landscape-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  height: 210px;
 }
-.hp-algorithm-connector {
+.hp-choice-mark {
+  display: block;
+  align-self: center;
+  aspect-ratio: 1;
+  border-radius: 5px;
+  background: var(--text);
+  opacity: var(--choice-opacity, 0.14);
+  transform: scale(var(--choice-scale, 0.8));
+  transition: opacity 0.7s var(--ease-out-quint), transform 0.9s var(--ease-out-quint);
+}
+.hp-choice-mark.is-selected {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--text);
+}
+.hp-choice-landscape-legend {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 42px;
-  color: var(--tertiary);
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--separator-light);
 }
-.hp-algorithm-connector::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 50%;
-  border-left: 1px dashed var(--separator);
+.hp-choice-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--secondary);
+  font-size: 0.6875rem;
 }
-.hp-algorithm-connector span {
-  position: relative;
-  padding: 4px 8px;
-  background: var(--canvas);
+.hp-choice-key i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--text);
 }
-.hp-algorithm-output {
+.hp-choice-key i.is-muted {
+  opacity: 0.24;
+}
+.hp-choice-key i.is-selected {
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--text);
+}
+.hp-choice-output {
+  margin-top: 10px;
   padding: 17px;
   border: 1px solid var(--text);
   border-radius: 18px;
   background: var(--paper);
 }
-.hp-algorithm-output-top {
+.hp-choice-output-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 14px;
 }
-.hp-algorithm-output-top .eyebrow {
+.hp-choice-output-head .eyebrow {
   margin-bottom: 6px;
 }
-.hp-algorithm-output-top h3 {
+.hp-choice-output-head h3 {
+  max-width: 15rem;
   margin: 0;
-  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
   letter-spacing: -0.04em;
   line-height: 1;
 }
@@ -5212,59 +5240,49 @@ a.hp-input-data-row:focus-visible {
   place-items: center;
   width: 32px;
   height: 32px;
+  flex: 0 0 auto;
   border-radius: 50%;
   background: var(--text);
   color: var(--paper);
   font-size: 1rem;
 }
-.hp-algorithm-plans {
+.hp-choice-plans {
   display: grid;
   gap: 6px;
 }
-.hp-algorithm-plan {
+.hp-choice-plan {
   display: grid;
-  grid-template-columns: 24px minmax(0, 0.8fr) minmax(0, 1fr) auto;
+  grid-template-columns: 24px minmax(0, 0.9fr) minmax(0, 1fr);
   align-items: center;
   gap: 10px;
-  min-height: 46px;
+  min-height: 44px;
   padding: 8px 10px;
   border: 1px solid var(--separator-light);
   border-radius: 11px;
   background: var(--canvas);
 }
-.hp-algorithm-plan.is-selected {
+.hp-choice-plan.is-featured {
   border-color: var(--text);
   background: var(--text);
   color: var(--paper);
 }
-.hp-algorithm-plan-index {
+.hp-choice-plan > span:last-child {
+  color: var(--secondary);
+  font-size: 0.6875rem;
+}
+.hp-choice-plan.is-featured > span:last-child {
+  color: #d1d1d6;
+}
+.hp-choice-plan strong {
+  font-size: 0.8125rem;
+}
+.hp-choice-plan .hp-algorithm-plan-index {
   color: var(--tertiary);
   font-size: 0.625rem;
   font-variant-numeric: tabular-nums;
 }
-.hp-algorithm-plan.is-selected .hp-algorithm-plan-index,
-.hp-algorithm-plan.is-selected .hp-algorithm-plan-detail,
-.hp-algorithm-plan.is-selected .hp-algorithm-plan-state {
+.hp-choice-plan.is-featured .hp-algorithm-plan-index {
   color: #d1d1d6;
-}
-.hp-algorithm-plan strong {
-  font-size: 0.8125rem;
-}
-.hp-algorithm-plan-detail,
-.hp-algorithm-plan-state {
-  color: var(--secondary);
-  font-size: 0.6875rem;
-}
-.hp-algorithm-plan-state {
-  justify-self: end;
-}
-.hp-algorithm-output-note {
-  margin: 14px 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--separator-light);
-  color: var(--secondary);
-  font-size: 0.6875rem;
-  line-height: 1.45;
 }
 .hp-algorithm-feedback {
   display: flex;
@@ -5307,14 +5325,25 @@ a.hp-input-data-row:focus-visible {
     flex-direction: column;
     gap: 6px;
   }
-  .hp-algorithm-plan {
+  .hp-choice-landscape-grid {
+    height: 180px;
+    gap: 6px;
+  }
+  .hp-choice-landscape-legend {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .hp-choice-plan {
     grid-template-columns: 22px minmax(0, 1fr) auto;
     gap: 8px;
   }
-  .hp-algorithm-plan-detail {
-    display: none;
+  .hp-choice-plan > span:last-child {
+    justify-self: end;
   }
-  .hp-algorithm-plan-state {
-    font-size: 0.625rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-choice-mark {
+    transition: none;
   }
 }
