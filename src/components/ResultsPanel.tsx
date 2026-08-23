@@ -11,7 +11,7 @@ export function ResultsPanel() {
         <p className="eyebrow">Selected outcomes</p>
         <h2 id="results-title">Lower food cost and waste while meeting nutrition needs.</h2>
         <p>
-          The public result is a selected set of outcome figures from an early deterministic replay. It shows the intended direction of the system through cost, nourishment and waste.
+          Selected figures from an early deterministic replay.
         </p>
       </div>
 
@@ -23,7 +23,6 @@ export function ResultsPanel() {
           <p className="hp-results-overview-delta">
             <strong>−{cost.reductionPercent}%</strong> vs the <a href={NUTRITION_OUTCOME.sources.habe.url} target="_blank" rel="noopener noreferrer">Swiss single-adult grocery average</a> (CHF {cost.comparatorPerDayChf.toFixed(2)}/day)
           </p>
-          <p>After the first pantry fill: CHF {cost.staplePerDayAfterPantryFillChf.toFixed(2)} per day.</p>
         </article>
 
         <article>
@@ -33,7 +32,7 @@ export function ResultsPanel() {
           <p className="hp-results-overview-delta">
             <strong>+{nutritionDelta} pp</strong> vs the <a href={NUTRITION_OUTCOME.sources.menuCh.url} target="_blank" rel="noopener noreferrer">Swiss survey mean</a> ({NUTRITION_OUTCOME.menuChMar10}%)
           </p>
-          <p>The index averages ten capped nutrient ratios.</p>
+          <p>Ten capped nutrient ratios.</p>
         </article>
 
         <article>
@@ -43,7 +42,7 @@ export function ResultsPanel() {
           <p className="hp-results-overview-delta">
             <strong>−{waste.reductionPercent}%</strong> vs the <a href={NUTRITION_OUTCOME.sources.foen.url} target="_blank" rel="noopener noreferrer">household estimate</a> ({waste.comparatorPerWeekG.toLocaleString("en-GB")} g/week)
           </p>
-          <p>The household estimate covers a broader discard basket.</p>
+          <p>The estimate covers a broader discard basket.</p>
         </article>
       </div>
 
