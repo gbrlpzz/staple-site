@@ -1,26 +1,21 @@
 import { useState } from "react";
-import { CONTACT_EMAIL } from "../data/benchmark";
 
 const QUESTIONS = [
   {
     question: "What is Staple?",
-    answer: "Staple is a personal nutrition system. Every week, it builds a complete meal and shopping plan around your nutrition needs, your budget, your pantry and current store prices.",
+    answer: "A personal nutrition system that builds a meal and shopping plan around your needs, budget, pantry and current prices.",
   },
   {
     question: "How does Staple choose a week?",
-    answer: "It searches complete seven-day menus, discards any plan that misses a firm nutrition or cooking floor, and offers a concise set of realistic choices across budget and quality.",
+    answer: "It searches complete seven-day menus, filters out plans that miss nutrition or cooking requirements, then offers realistic choices across budget and quality.",
   },
   {
     question: "Does Staple account for what I already have?",
-    answer: "Yes. Your pantry carries over from week to week. Items you already own reduce the next shop, while purchases and meals keep the inventory up to date.",
+    answer: "Yes. Pantry stock carries over week to week, reducing the next shop and waste.",
   },
   {
     question: "Are these results from a clinical or purchasing trial?",
-    answer: "No. The public figures come from an early deterministic replay. They are selected point estimates, not causal effects, clinical evidence or health advice.",
-  },
-  {
-    question: "How can I get in touch?",
-    answer: "For questions about the planner, retail integration, research, licensing or partnerships, please send an email.",
+    answer: "No. These are selected point estimates from an early deterministic replay—not causal effects, clinical evidence or health advice.",
   },
 ] as const;
 
@@ -32,7 +27,6 @@ export function FAQ() {
       <div className="section-heading hp-faq-intro" data-reveal-item="intro">
         <p className="eyebrow">Questions</p>
         <h2 id="faq-title">Any questions?</h2>
-        <p><a href={`mailto:${CONTACT_EMAIL}`} target="_blank" rel="noopener noreferrer">Get in touch any time.</a></p>
       </div>
       <div className="hp-faq-list" data-reveal-item="list">
         {QUESTIONS.map((item, index) => {
