@@ -2,7 +2,7 @@
 
 Public presentation of **Staple**, a personal nutrition system.
 
-This repository contains the static Vite + React landing site. The page presents the product interface, high-level research framing and selected nutrition outcomes. The underlying application, raw benchmark data, optimizer protocol and implementation remain private.
+This repository contains the static Vite + React landing site. The page presents the product interface, high-level research framing and selected cost, nutrition and waste outcomes. The underlying application, raw benchmark data, optimizer protocol and implementation remain private.
 
 ## Rights and licence
 
@@ -22,6 +22,6 @@ npm run dev -- --host 127.0.0.1 --port 4188
 
 ## Page structure
 
-Hero, then the five product screens (Plan / Choose / Shop / Store / Cook), a short Algorithm section, selected Nutrition outcomes, then Inquire.
+Hero, then the five product screens (Plan / Choose / Shop / Store / Cook), a short Algorithm section, selected outcome figures, then Inquire.
 
-The public site intentionally contains only selected nutrition outcomes. Detailed benchmark data, optimizer internals and research protocol remain private.
+The public site intentionally contains only selected cost, nutrition and waste outcomes. Detailed benchmark data, optimizer internals and research protocol remain private.
